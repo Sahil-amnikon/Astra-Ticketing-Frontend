@@ -1,0 +1,41 @@
+{
+  "name": "amnikon-ticketing",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "npm run build --workspace @amnikon/api && npm run build --workspace @amnikon/web",
+    "typecheck": "tsc -p apps/api/tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test --workspace @amnikon/api",
+    "test:integration": "npm run test:integration --workspace @amnikon/api",
+    "test:e2e": "playwright test",
+    "db:migrate": "node scripts/migrate.cjs",
+    "db:seed": "node scripts/seed.cjs",
+    "verify": "npm run typecheck && npm run lint && npm run format:check && npm test && npm run test:integration && npm run build && npm run test:e2e",
+    "test:smoke": "node scripts/smoke-unavailable.cjs"
+  },
+  "dependencies": {
+    "knex": "3.3.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@electric-sql/pglite-pgvector": "0.0.9",
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "16.3.5",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0"
+  }
+}

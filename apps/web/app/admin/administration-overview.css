@@ -1,0 +1,267 @@
+.administration-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  background: linear-gradient(110deg, #f1edff, #edf4ff);
+  border: 1px solid #dbe3f7;
+  border-radius: 20px;
+  padding: 34px 38px;
+  margin-bottom: 24px;
+  color: #263757;
+}
+.administration-hero p {
+  color: #6663bb;
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  font-weight: 750;
+  margin: 0 0 13px;
+}
+.administration-hero h1 {
+  font-size: 30px;
+  letter-spacing: -0.8px;
+  margin: 0 0 10px;
+}
+.administration-hero span {
+  color: #657594;
+  line-height: 1.7;
+}
+.administration-hero > svg {
+  height: 62px;
+  width: 62px;
+  color: #8175d2;
+  flex: 0 0 62px;
+}
+.administration-overview {
+  display: grid;
+  gap: 24px;
+  color: #273956;
+}
+.administration-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.administration-tools h2 {
+  font-size: 17px;
+  margin: 0;
+}
+.administration-tools > a {
+  font-size: 12px;
+}
+.administration-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.administration-metric {
+  display: grid;
+  gap: 12px;
+  border: 1px solid #e0e7f5;
+  border-radius: 16px;
+  background: white;
+  padding: 24px;
+  color: #283b61;
+  transition: border-color 0.15s;
+}
+.administration-metric:hover {
+  border-color: #7e99dd;
+}
+.administration-metric-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #687a96;
+}
+.administration-metric-label svg {
+  color: #7367c6;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+.administration-metric > strong {
+  font-size: 34px;
+  line-height: 1.2;
+}
+.administration-metric small {
+  color: #7584a0;
+  font-size: 10px;
+}
+.administration-areas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.administration-area {
+  padding: 26px !important;
+}
+.administration-area h2 {
+  font-size: 18px;
+  margin: 0 0 9px;
+}
+.administration-area > p {
+  color: #71819b;
+  line-height: 1.65;
+  margin: 0 0 22px;
+}
+.administration-area > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.administration-area a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e6ecf5;
+  border-radius: 10px;
+  padding: 12px;
+  color: #314367;
+  font-size: 12px;
+}
+.administration-area a:hover {
+  background: #f5f7fe;
+  border-color: #a6b8e4;
+}
+.administration-area a > span:last-child {
+  margin-left: auto;
+  color: #93a0bb;
+}
+.administration-area-icon {
+  height: 32px;
+  width: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  background: #eef2fc;
+  border-radius: 8px;
+  color: #697bc3;
+}
+.administration-area-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.administration-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+.administration-audit {
+  padding: 26px !important;
+}
+.administration-audit ol {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+.administration-audit li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid #e8edf6;
+}
+.administration-audit li > svg {
+  color: #8795b5;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+}
+.administration-audit li > div {
+  flex: 1;
+  min-width: 0;
+}
+.administration-audit strong,
+.administration-audit span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.administration-audit strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.administration-audit span {
+  font-size: 11px;
+  color: #8491a9;
+  margin-top: 5px;
+}
+.administration-audit time {
+  font-size: 10px;
+  color: #7686a2;
+  text-align: right;
+}
+.administration-access-tip {
+  background: #f0efff;
+  border: 1px solid #e0dcff;
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 14px;
+}
+.administration-access-tip > svg {
+  height: 30px;
+  width: 30px;
+  color: #7b69c6;
+}
+.administration-access-tip h2 {
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+.administration-access-tip p {
+  color: #6b7698;
+  line-height: 1.8;
+  margin: 0;
+}
+.administration-access-tip > a:last-child {
+  font-size: 12px;
+  margin-top: 3px;
+}
+@media (max-width: 1100px) {
+  .administration-area > div {
+    grid-template-columns: 1fr;
+  }
+  .administration-bottom {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .administration-hero {
+    padding: 24px;
+  }
+  .administration-hero h1 {
+    font-size: 25px;
+  }
+  .administration-hero > svg {
+    display: none;
+  }
+  .administration-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .administration-metric {
+    padding: 18px;
+  }
+  .administration-areas,
+  .administration-bottom {
+    grid-template-columns: 1fr;
+  }
+  .administration-tools {
+    flex-wrap: wrap;
+  }
+  .administration-audit li {
+    flex-wrap: wrap;
+  }
+  .administration-audit time {
+    margin-left: 32px;
+    text-align: left;
+  }
+  .administration-area {
+    padding: 22px !important;
+  }
+}

@@ -1,0 +1,7 @@
+services:
+  frontend:
+    image: amnikon-web:astra-admin-service-config-20261013
+  backend:
+    image: amnikon-api:astra-admin-service-config-20261013
+  worker:
+    image: amnikon-api:astra-admin-service-config-20261013

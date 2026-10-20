@@ -1,0 +1,14 @@
+services:
+  backend:
+    environment:
+      ATTACHMENT_STORAGE_ROOT: ${ATTACHMENT_STORAGE_ROOT:-/app/storage}
+      ATTACHMENT_STORAGE_MARKER: ${ATTACHMENT_STORAGE_MARKER:-.amnikon-storage-ready}
+    volumes:
+      - ${ATTACHMENT_STORAGE_HOST_PATH:-/mnt/amnikon-storage}:/app/storage:rw
+
+  worker:
+    environment:
+      ATTACHMENT_STORAGE_ROOT: ${ATTACHMENT_STORAGE_ROOT:-/app/storage}
+      ATTACHMENT_STORAGE_MARKER: ${ATTACHMENT_STORAGE_MARKER:-.amnikon-storage-ready}
+    volumes:
+      - ${ATTACHMENT_STORAGE_HOST_PATH:-/mnt/amnikon-storage}:/app/storage:rw

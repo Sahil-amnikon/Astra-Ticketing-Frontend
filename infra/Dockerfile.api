@@ -1,0 +1,19 @@
+FROM node:24.19.0-bookworm-slim AS build
+WORKDIR /app
+COPY package*.json ./
+COPY apps/api/package.json apps/api/package.json
+COPY apps/web/package.json apps/web/package.json
+RUN npm ci
+COPY apps/api apps/api
+RUN npm run build --workspace @amnikon/api
+RUN npm prune --omit=dev
+FROM node:24.19.0-bookworm-slim
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=build --chown=node:node /app/node_modules ./node_modules
+COPY --from=build --chown=node:node /app/apps/api ./apps/api
+COPY --chown=node:node scripts ./scripts
+COPY --chown=node:node packages ./packages
+USER node
+EXPOSE 3001 3002
+CMD ["node", "apps/api/dist/src/main.js"]

@@ -1,0 +1,32 @@
+{
+  "name": "@amnikon/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/main.js",
+    "start:worker": "node dist/src/worker.js",
+    "test": "npm run build && node --test dist/test/auth.test.js dist/test/config.test.js dist/test/core.test.js dist/test/entra-directory.test.js dist/test/health.test.js dist/test/admin.test.js dist/test/admin-http.test.js dist/test/tickets.test.js dist/test/sla-reports.test.js dist/test/notifications.test.js dist/test/changes-internal.test.js dist/test/help.test.js dist/test/web-guidance.test.js dist/test/source-steps.test.js dist/test/workspace-mail.test.js dist/test/problems.test.js dist/test/support-portal.test.js dist/test/groups.test.js dist/test/site-domains.test.js dist/test/administration-read-only.test.js",
+    "test:integration": "npm run build && node --test dist/test/integration.test.js"
+  },
+  "dependencies": {
+    "@fastify/helmet": "^13.0.2",
+    "@nestjs/common": "12.0.1",
+    "@nestjs/core": "12.0.1",
+    "@nestjs/platform-fastify": "12.0.1",
+    "@nestjs/swagger": "12.0.1",
+    "cheerio": "^1.1.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
+    "ioredis": "^5.8.2",
+    "nodemailer": "10.0.10",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "8.0.2",
+    "@types/pg": "^8.15.6"
+  }
+}
