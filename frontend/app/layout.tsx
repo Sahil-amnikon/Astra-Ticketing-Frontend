@@ -1,0 +1,28 @@
+import type { Metadata } from 'next';
+import '../src/theme/globals.css';
+import '../src/theme/corporate-workspace.css';
+import '../src/theme/astra-workspace.css';
+import '../src/theme/workspace.css';
+import { ColorModeProvider } from '../src/context/ColorModeContext';
+import GlobalThemeToggle from '../src/components/layout/GlobalThemeToggle';
+
+export const metadata: Metadata = {
+  title: 'ASTRA | Ticketing System',
+  description: 'ASTRA IT service management and ticketing workspace',
+  robots: { index: false, follow: false },
+};
+
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ColorModeProvider>
+          <GlobalThemeToggle />
+          {children}
+        </ColorModeProvider>
+      </body>
+    </html>
+  );
+}

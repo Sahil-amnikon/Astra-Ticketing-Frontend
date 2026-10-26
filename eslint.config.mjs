@@ -15,7 +15,7 @@ const config = [
   js.configs.recommended,
   ...ts.configs.recommended,
   ...next,
-  { settings: { next: { rootDir: 'apps/web/' } } },
+  { settings: { next: { rootDir: 'frontend/' } } },
   {
     files: ['**/*.cjs'],
     languageOptions: {

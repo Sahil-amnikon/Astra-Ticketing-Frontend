@@ -1,0 +1,355 @@
+'use client';
+import NavbarTools from '../Navbar/NavbarTools';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
+import BrandMark from '../../ui/BrandMark';
+import UiIcon, { type IconName } from '../../ui/UiIcon';
+import NotificationCenter from '../Navbar/NotificationCenter';
+import { useSidebarScroll } from '../Sidebar/useSidebarScroll';
+import WorkspaceNavigation from '../Sidebar/Sidebar';
+import { extensionLinks } from '../../../routes/navigation';
+
+export interface WorkspaceUser {
+  id: string;
+  displayName: string;
+  email?: string;
+  roles: string[];
+  permissions?: string[];
+  changeAccess?: string;
+  departmentIds?: string[];
+  workScope?: string;
+  workspace?: string;
+}
+export interface WorkspaceSession {
+  user: WorkspaceUser;
+  csrfToken: string;
+}
+export type ApiRequest = <T = unknown>(
+  path: string,
+  init?: RequestInit,
+) => Promise<T>;
+export type Option = {
+  id: string;
+  name: string;
+  client_id?: string;
+  site_id?: string | null;
+};
+export function useWorkspace() {
+  const [session, setSession] = useState<WorkspaceSession>();
+  const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [revision, setRevision] = useState(0);
+  const csrf = useRef('');
+  const request = useCallback<ApiRequest>(
+    async <T,>(path: string, init?: RequestInit): Promise<T> => {
+      const response = await fetch(`/api${path}`, {
+        ...init,
+        cache: 'no-store',
+        headers: {
+          ...(init?.body ? { 'content-type': 'application/json' } : {}),
+          'x-csrf-token': csrf.current,
+          ...init?.headers,
+        },
+        signal: init?.signal ?? AbortSignal.timeout(30000),
+      });
+      const data = await response.json();
+      if (!response.ok)
+        throw new Error(
+          response.status === 401
+            ? 'Your session expired. Sign in again.'
+            : response.status === 403
+              ? 'Your account does not have access to this action.'
+              : (data.error?.message ?? 'Request failed. Please retry.'),
+        );
+      return data as T;
+    },
+    [],
+  );
+  useEffect(() => {
+    let live = true;
+    void request<WorkspaceSession>('/auth/me')
+      .then((s) => {
+        if (live) {
+          csrf.current = s.csrfToken;
+          setSession(s);
+        }
+      })
+      .catch((e) => {
+        if (live) setError(e.message);
+      });
+    return () => {
+      live = false;
+    };
+  }, [request]);
+  const save = async (path: string, body: unknown, method = 'POST') => {
+    setError('');
+    setNotice('');
+    setBusy(true);
+    try {
+      const result = await request(path, {
+        method,
+        body: JSON.stringify(body),
+      });
+      setNotice('Saved.');
+      setRevision((x) => x + 1);
+      return result;
+    } catch (e) {
+      setError((e as Error).message);
+      throw e;
+    } finally {
+      setBusy(false);
+    }
+  };
+  return {
+    session,
+    request,
+    error,
+    setError,
+    notice,
+    setNotice,
+    busy,
+    revision,
+    refresh: () => setRevision((x) => x + 1),
+    save,
+  };
+}
+export function ExtensionNav({
+  user,
+}: {
+  user?: { roles: string[]; permissions?: string[]; workspace?: string };
+}) {
+  const path = usePathname() ?? '/';
+  return (
+    <WorkspaceNavigation
+      links={extensionLinks(user)}
+      activeHref={path}
+      workspace={user?.workspace}
+    />
+  );
+}
+export function WorkspaceFrame({
+  title,
+  description,
+  pageHeading,
+  user,
+  csrfToken,
+  error,
+  notice,
+  children,
+}: {
+  title: string;
+  description?: string;
+  pageHeading?: ReactNode;
+  user?: WorkspaceUser;
+  csrfToken?: string;
+  error?: string;
+  notice?: string;
+  children: ReactNode;
+}) {
+  const [menu, setMenu] = useState(false);
+  const [logoutError, setLogoutError] = useState('');
+  const router = useRouter();
+  const path = usePathname() ?? '/';
+  const sidebarScroll = useSidebarScroll(path, Boolean(user));
+  const admin = user?.roles.includes('ADMIN');
+  const staff = user?.roles.some((r) =>
+    ['INTERN', 'TECHNICIAN', 'TEAM_LEAD', 'MANAGER', 'ADMIN'].includes(r),
+  );
+  const management = user?.roles.some((r) =>
+    ['TEAM_LEAD', 'MANAGER'].includes(r),
+  );
+  const base = admin ? '/admin' : management ? '/management' : '/operations';
+  const roleLabel = admin
+    ? 'Administrator'
+    : user?.roles.includes('MANAGER')
+      ? 'Manager'
+      : user?.roles.includes('TEAM_LEAD')
+        ? 'Team Lead'
+        : user?.roles.includes('TECHNICIAN')
+          ? 'Technician'
+          : user?.roles.includes('INTERN')
+            ? 'Intern'
+            : 'Client portal';
+  const links: [string, IconName, string][] = staff
+    ? [
+        [base, 'dashboard', 'Overview'],
+        [`${base}/tickets`, 'tickets', 'Tickets'],
+      ]
+    : [['/client', 'tickets', 'My support tickets']];
+  if (management && user?.permissions?.includes('REPORTS_VIEW'))
+    links.push(['/management/reports', 'reports', 'Reports & Analytics']);
+  if (management && user?.permissions?.includes('SLA_MANAGE'))
+    links.push(['/management/sla', 'sla', 'SLA Management']);
+  if (admin) {
+    links.push(
+      ['/admin/sla', 'sla', 'SLA Management'],
+      ['/admin/reports', 'reports', 'Reports & Analytics'],
+      ['/admin/users', 'users', 'Users & Access'],
+      ['/admin/clients', 'clients', 'Clients'],
+      ['/admin/contacts', 'contacts', 'Contacts'],
+      ['/admin/sites', 'sites', 'Sites'],
+      ['/admin/categories', 'categories', 'Categories'],
+      ['/admin/tags', 'tags', 'Tags'],
+      ['/admin/audit-logs', 'audit', 'Audit History'],
+    );
+  }
+  if (admin || (user?.changeAccess && user.changeAccess !== 'NONE'))
+    links.push(['/changes', 'change', 'Change Management']);
+  return (
+    <div className="admin-shell ticket-shell">
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <aside className={`sidebar ${menu ? 'open' : ''}`}>
+        <Link className="brand" href="/">
+          <BrandMark />
+          <span>
+            ASTRA<small>Ticketing System</small>
+          </span>
+        </Link>
+        <p className="nav-label">
+          {management
+            ? 'MANAGEMENT'
+            : admin
+              ? 'ADMINISTRATION'
+              : staff
+                ? 'SERVICE OPERATIONS'
+                : 'CLIENT PORTAL'}
+        </p>
+        <nav ref={sidebarScroll} aria-label="Workspace">
+          <WorkspaceNavigation
+            links={[...links, ...extensionLinks(user)]}
+            activeHref={path}
+            workspace={user?.workspace}
+            onNavigate={() => setMenu(false)}
+          />
+        </nav>
+        <div className="sidebar-bottom">
+          <Link href="/">
+            <UiIcon name="switch" />
+            Switch workspace
+          </Link>
+        </div>
+      </aside>
+      <div className="workspace">
+        <header className="topbar workspace-frame-topbar">
+          <button
+            className="menu-button secondary"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded={menu}
+            onClick={() => setMenu(!menu)}
+          >
+            ☰
+          </button>
+          <span className="breadcrumb">{title}</span>
+          <NavbarTools />
+          <div className="profile workspace-frame-profile">
+            {user ? (
+              <>
+                <span className="avatar" aria-hidden="true">
+                  {user.displayName.slice(0, 1) || 'A'}
+                </span>
+                <div className="workspace-frame-identity">
+                  <span>{user.displayName}</span>
+                  <small>{roleLabel}</small>
+                </div>
+              </>
+            ) : null}
+            {staff && csrfToken ? (
+              <NotificationCenter
+                csrfToken={csrfToken}
+                ticketBase={admin ? '/admin/ticket' : `${base}/tickets`}
+              />
+            ) : null}
+            <Link className="secondary" href="/">
+              Switch workspace
+            </Link>
+            {csrfToken ? (
+              <button
+                type="button"
+                className="secondary"
+                onClick={() =>
+                  void fetch('/api/auth/logout', {
+                    method: 'POST',
+                    headers: { 'x-csrf-token': csrfToken },
+                  })
+                    .then((r) => {
+                      if (!r.ok) throw new Error('Sign out failed. Retry.');
+                      router.replace('/');
+                      router.refresh();
+                    })
+                    .catch((e) => setLogoutError(e.message))
+                }
+              >
+                Sign out
+              </button>
+            ) : (
+              <Link href="/">Sign in</Link>
+            )}
+          </div>
+        </header>
+        <main id="main" className="v38-content">
+          {pageHeading ?? (
+            <header className="page-heading">
+              <div>
+                <p className="eyebrow">ASTRA / TICKETING SYSTEM</p>
+                <h1>{title}</h1>
+                {description ? <p>{description}</p> : null}
+              </div>
+            </header>
+          )}
+          {error || logoutError ? (
+            <div className="notice error" role="alert">
+              {error || logoutError}
+            </div>
+          ) : null}
+          {notice ? (
+            <div className="notice" role="status">
+              {notice}
+            </div>
+          ) : null}
+          {user ? (
+            children
+          ) : !error ? (
+            <p role="status">Loading workspace…</p>
+          ) : null}
+        </main>
+      </div>
+    </div>
+  );
+}
+export function SelectOptions({ items }: { items: Option[] }) {
+  return (
+    <>
+      {items.map((x) => (
+        <option key={x.id} value={x.id}>
+          {x.name}
+        </option>
+      ))}
+    </>
+  );
+}
+export const field = (data: FormData, name: string) =>
+  String(data.get(name) ?? '').trim();
+export const optionalField = (data: FormData, name: string) =>
+  field(data, name) || undefined;
+export function localTime(value: unknown) {
+  if (!value) return '';
+  const date = new Date(String(value));
+  return Number.isFinite(date.getTime())
+    ? new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 16)
+    : '';
+}
+export const isoTime = (data: FormData, name: string) =>
+  field(data, name) ? new Date(field(data, name)).toISOString() : undefined;

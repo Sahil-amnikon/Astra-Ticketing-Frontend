@@ -14,7 +14,7 @@ It is a LAB-validation candidate, not a production release. See
 
 | Directory                      | Responsibility                                                 |
 | ------------------------------ | -------------------------------------------------------------- |
-| `apps/web`                     | Next.js role-based workspaces, API gateway, React and Tailwind |
+| `frontend`                     | Next.js role-based workspaces, API gateway, React and Tailwind |
 | `apps/api`                     | NestJS API, Entra sessions, RBAC, core data and ticket engine  |
 | `packages/database/migrations` | Knex PostgreSQL migrations                                     |
 | `infra`                        | Separate WEB and DB Compose deployments and image builds       |

@@ -1,0 +1,1063 @@
+/* SPARK / Orbit visual system. Loaded after retained workflow-specific styles. */
+html:root {
+  --blue: #2563eb;
+  --blue-dark: #1e40af;
+  --blue-soft: #edf3ff;
+  --ink: #111b4b;
+  --muted: #5b77a1;
+  --line: #e2e9f2;
+  --spark-surface: #fff;
+  --spark-background: #f4f7fc;
+  --spark-hover: #f3f7fd;
+  --spark-sidebar: 248px;
+  --shadow-sm: 0 3px 12px rgb(30 64 175 / 3.5%);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+html[data-color-mode='dark'] {
+  color-scheme: dark;
+  --ink: #edf3fc;
+  --muted: #a5b4ca;
+  --line: #2b3a50;
+  --spark-surface: #111c2e;
+  --spark-background: #0b1220;
+  --spark-hover: #17243a;
+  --blue-soft: #182e55;
+  --shadow-sm: 0 8px 24px rgb(0 0 0 / 12%);
+}
+body {
+  background: var(--spark-background);
+  color: var(--ink);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+::selection {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.admin-shell {
+  background: var(--spark-background);
+}
+.admin-shell .sidebar {
+  width: var(--spark-sidebar);
+  padding: 26px 16px 18px;
+  background: var(--spark-surface);
+  color: var(--muted);
+  border-right: 1px solid var(--line);
+  box-shadow: none;
+  z-index: 60;
+}
+.admin-shell .sidebar .brand {
+  margin: 0 6px 24px;
+  padding: 0 6px 25px;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  color: #2563eb;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+.admin-shell .sidebar .brand small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+}
+.admin-shell .sidebar .brand-mark {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+}
+.admin-shell .sidebar .brand-mark-front {
+  fill: #2563eb;
+}
+.admin-shell .sidebar .brand-mark-back {
+  fill: #93b4ff;
+}
+.admin-shell .sidebar .nav-label {
+  margin: 0 12px 12px;
+  padding: 0;
+  color: #8a9bb5;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+}
+.admin-shell .sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding-right: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #d8e3f4 transparent;
+}
+.workspace-nav-group {
+  margin: 0 0 6px;
+}
+.workspace-nav-group-label {
+  color: #8a9bb5;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0;
+  margin: 12px 12px 7px;
+}
+.admin-shell .sidebar nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 43px;
+  margin: 3px 0;
+  padding: 10px 13px;
+  border-radius: 9px;
+  color: #41638f;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+.admin-shell .sidebar nav a:hover {
+  background: var(--spark-hover);
+  color: #2563eb;
+}
+.admin-shell .sidebar nav a[aria-current='page'] {
+  color: #fff;
+  background: #2167ee;
+  box-shadow: 0 5px 12px #2167ee22;
+  font-weight: 600;
+}
+.admin-shell .sidebar nav a .nav-symbol,
+.admin-shell .sidebar nav a:hover .nav-symbol,
+.admin-shell .sidebar nav a[aria-current='page'] .nav-symbol {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+.admin-shell .sidebar nav a .nav-symbol svg {
+  width: 19px;
+  height: 19px;
+  color: inherit;
+}
+.admin-shell .sidebar-bottom {
+  margin-top: 16px;
+  padding: 19px 12px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.admin-shell .sidebar-bottom > a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+}
+.admin-shell .sidebar-bottom svg {
+  width: 18px;
+  height: 18px;
+}
+.admin-shell .sidebar-bottom small {
+  color: #8a9bb5;
+  font-size: 10px;
+  margin-top: 15px;
+}
+.admin-shell .sidebar-bottom small i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16a34a;
+  margin-right: 5px;
+}
+.admin-shell .workspace {
+  margin-left: var(--spark-sidebar);
+  min-width: 0;
+  width: calc(100% - var(--spark-sidebar));
+  background: linear-gradient(
+    135deg,
+    var(--spark-background),
+    var(--spark-hover)
+  );
+}
+.admin-shell .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 76px;
+  padding: 0 30px;
+  border-bottom: 1px solid var(--line);
+  background: var(--spark-surface);
+  gap: 18px;
+  box-shadow: none;
+}
+.admin-shell .breadcrumb {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.admin-shell .breadcrumb span {
+  color: #a3b2c7;
+  padding: 0 9px;
+}
+.admin-shell .topbar .profile {
+  flex-shrink: 0;
+  font-size: 12px;
+  gap: 10px;
+  color: var(--ink);
+}
+.admin-shell .topbar .profile small {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+}
+.admin-shell .avatar {
+  width: 38px;
+  height: 38px;
+  background: #edf3ff;
+  color: #2563eb;
+  border: 1px solid #e2eaff;
+  font-weight: 700;
+}
+.admin-shell .topbar .profile > .secondary {
+  padding: 8px 10px;
+  font-size: 11px;
+}
+.admin-shell .workspace > main,
+.admin-shell .workspace main.v38-content {
+  padding: 30px;
+  max-width: 1800px;
+  width: 100%;
+}
+.admin-shell .page-heading,
+.corporate-heading {
+  padding: 0;
+  margin: 0 0 28px;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+.admin-shell .page-heading::before,
+.admin-shell .page-heading::after {
+  display: none;
+}
+.admin-shell h1,
+.corporate-heading h1 {
+  color: var(--ink);
+  font-size: clamp(23px, 2.3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+.admin-shell h2,
+.corporate-section-label h2 {
+  color: var(--ink);
+  font-weight: 650;
+}
+.admin-shell .page-heading p:last-child,
+.corporate-heading p:last-child {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.admin-shell .eyebrow {
+  color: #6c8bb7;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-bottom: 9px;
+}
+.admin-shell .primary,
+.spark-dialog .primary {
+  background: #2563eb;
+  color: #fff;
+  border: 1px solid #2563eb;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 3px 7px #2563eb14;
+}
+.admin-shell .primary:hover:not(:disabled),
+.spark-dialog .primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 5px 12px #2563eb22;
+}
+.admin-shell .secondary,
+.spark-dialog .secondary {
+  background: var(--spark-surface);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.admin-shell .secondary:hover {
+  background: var(--spark-hover);
+  color: #2563eb;
+}
+.admin-shell .panel,
+.admin-shell.ticket-shell .panel,
+.admin-shell .editor,
+.admin-shell .stat,
+.admin-shell .board-card,
+.admin-shell .corporate-metric {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--spark-surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.admin-shell .panel:hover {
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.admin-shell .panel {
+  padding: 23px;
+}
+.admin-shell .hint,
+.admin-shell .empty,
+.corporate-section-label > span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.admin-shell .corporate-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 25px;
+}
+.admin-shell .corporate-metric {
+  position: relative;
+  min-height: 108px;
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  transition:
+    transform 160ms,
+    box-shadow 160ms;
+}
+.admin-shell .corporate-metric::before {
+  content: '';
+  position: absolute;
+  inset: 19px auto 19px 0;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: #315fea;
+}
+.admin-shell .corporate-metric.spark-metric-teal::before {
+  background: #0b9b68;
+}
+.admin-shell .corporate-metric.spark-metric-amber::before {
+  background: #d58a18;
+}
+.admin-shell .corporate-metric.spark-metric-red::before {
+  background: #dc5353;
+}
+.admin-shell .corporate-metric:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(25 46 83 / 8%);
+}
+.admin-shell .corporate-metric-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 13px;
+  background: #edf3ff;
+  color: #315fea;
+}
+.admin-shell .corporate-metric-icon.teal {
+  background: #e9f8f1;
+  color: #0b9b68;
+}
+.admin-shell .corporate-metric-icon.amber {
+  background: #fff5e5;
+  color: #d58a18;
+}
+.admin-shell .corporate-metric-icon.red {
+  background: #fff0f0;
+  color: #dc5353;
+}
+.admin-shell .corporate-metric-icon svg {
+  width: 23px;
+  height: 23px;
+}
+.admin-shell .corporate-metric small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+.admin-shell .corporate-metric strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.admin-shell .corporate-metric-arrow {
+  color: #8ca5cd;
+  margin-left: auto;
+  align-self: flex-start;
+  font-size: 16px;
+}
+.spark-metric-detail {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+.corporate-heading .primary {
+  align-self: center;
+}
+.admin-shell .corporate-pill {
+  border-radius: 7px;
+  background: var(--spark-hover);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+  padding: 6px 10px;
+}
+.admin-shell .corporate-attention-row {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+.admin-shell .corporate-attention-row small,
+.admin-shell .corporate-trend-summary {
+  color: var(--muted);
+}
+.admin-shell .corporate-queue-link {
+  color: #2563eb;
+  background: var(--blue-soft);
+  border-radius: 9px;
+  padding: 11px 14px;
+}
+.admin-shell .corporate-distributions > .panel {
+  background: var(--spark-surface);
+}
+.admin-shell table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.admin-shell th {
+  padding: 14px 16px;
+  background: var(--spark-hover);
+  color: #4d6f9f;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.admin-shell td {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 12px;
+  vertical-align: middle;
+}
+.admin-shell td small {
+  color: var(--muted);
+  font-size: 10px;
+}
+.admin-shell tbody tr:hover {
+  background: var(--spark-hover);
+}
+.admin-shell tbody tr:last-child td {
+  border-bottom: 0;
+}
+.admin-shell
+  input:not([type='checkbox']):not([type='radio']):not([type='file']),
+.admin-shell select,
+.admin-shell textarea,
+.spark-field input,
+.spark-field select,
+.spark-field textarea {
+  min-height: 42px;
+  padding: 10px 13px;
+  background: var(--spark-surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 12px;
+  box-shadow: none;
+}
+.admin-shell label,
+.spark-field {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+.admin-shell input:focus,
+.admin-shell select:focus,
+.admin-shell textarea:focus {
+  border-color: #93b8f8;
+  outline: 3px solid #2563eb12;
+}
+.admin-shell :is(button, a, input, select, textarea):focus-visible,
+.spark-dialog :focus-visible {
+  outline: 3px solid #93b8f8;
+  outline-offset: 3px;
+}
+.admin-shell .ticket-filter-bar,
+.admin-shell .advanced-filters,
+.admin-shell .saved-ticket-views,
+.admin-shell .board-column {
+  background: var(--spark-surface);
+  border-color: var(--line);
+  border-radius: 13px;
+}
+.admin-shell .search,
+.admin-shell .search-box {
+  background: var(--spark-surface);
+  border-color: var(--line);
+}
+.admin-shell .badge,
+.spark-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  background: #e9f8f1;
+  color: #0c9161;
+}
+.spark-status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.spark-status.blue {
+  background: #edf3ff;
+  color: #2563eb;
+}
+.spark-status.amber {
+  background: #fff5e5;
+  color: #bf7d16;
+}
+.spark-status.red {
+  background: #fff0f0;
+  color: #d84c4c;
+}
+.spark-status.purple {
+  background: #f3edff;
+  color: #8051d7;
+}
+.spark-navbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+.spark-search-trigger {
+  height: 38px;
+  width: clamp(150px, 20vw, 270px);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--spark-hover);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.spark-search-trigger svg {
+  width: 16px;
+  height: 16px;
+}
+.spark-search-trigger kbd {
+  margin-left: auto;
+  padding: 2px 4px;
+  background: var(--spark-surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+  font-size: 9px;
+}
+.spark-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  border: 1px solid var(--line);
+  background: var(--spark-surface);
+  color: var(--muted);
+  border-radius: 9px;
+  font-size: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.spark-icon-button:hover {
+  color: #2563eb;
+  background: var(--spark-hover);
+}
+.spark-icon-button svg {
+  width: 18px;
+  height: 18px;
+}
+.spark-dialog {
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 25px;
+  margin: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--spark-surface);
+  color: var(--ink);
+  box-shadow: 0 22px 70px #111b4b33;
+}
+.spark-dialog::backdrop {
+  background: #101b3f66;
+  backdrop-filter: blur(3px);
+}
+.spark-dialog-wide {
+  width: min(800px, calc(100vw - 32px));
+}
+.spark-dialog > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+.spark-dialog h2 {
+  font-size: 20px;
+  font-weight: 650;
+  margin: 0;
+}
+.spark-dialog p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.spark-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.spark-field input,
+.spark-field select,
+.spark-field textarea {
+  width: 100%;
+}
+.spark-command-results {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+.spark-command-results a {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px;
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 13px;
+}
+.spark-command-results a:hover {
+  background: var(--blue-soft);
+  color: #2563eb;
+}
+.spark-login-page.astra-login {
+  display: flex;
+  min-height: 100dvh;
+  padding: 36px;
+  align-items: center;
+  justify-content: center;
+  background: #f4f7fc;
+}
+.spark-login-container {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  width: min(1160px, 100%);
+  min-height: 690px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 65px #16244a12;
+}
+.spark-login-page .astra-login-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 690px;
+  padding: 60px;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(135deg, #1e40af, #4f46e5);
+}
+.spark-login-page .astra-login-hero::before,
+.spark-login-page .astra-login-hero::after {
+  display: none;
+}
+.spark-login-page .astra-login-intro {
+  position: relative;
+  z-index: 1;
+  max-width: 430px;
+}
+.spark-login-page .astra-login-logo {
+  margin-bottom: 55px;
+}
+.spark-login-page .astra-login-logo svg {
+  max-width: 180px;
+}
+.spark-login-page .astra-login-hero h2 {
+  color: #fff;
+  font-size: clamp(34px, 4vw, 51px);
+  line-height: 1.2;
+  letter-spacing: -1.8px;
+  margin: 18px 0 22px;
+}
+.spark-login-page .astra-login-hero p {
+  color: #e1e8ff;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.spark-login-page .astra-login-hero > small {
+  position: relative;
+  margin-top: auto;
+  padding-top: 45px;
+  color: #c9d6ff;
+  font-size: 11px;
+  z-index: 1;
+}
+.spark-login-kicker {
+  color: #c7d5ff;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+.spark-login-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 32px;
+  color: #e8eeff;
+  font-size: 12px;
+}
+.spark-login-orbit {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border: 1px solid #ffffff14;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.spark-login-orbit-one {
+  right: -260px;
+  top: -210px;
+}
+.spark-login-orbit-two {
+  right: -200px;
+  bottom: -320px;
+  width: 650px;
+  height: 650px;
+  border-width: 55px;
+  border-color: #ffffff06;
+}
+.spark-login-page .astra-login-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  background: #fff;
+}
+.spark-login-page .astra-login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 0;
+  margin: auto;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.spark-login-page .astra-login-small-logo {
+  max-width: 145px;
+  margin-bottom: 42px;
+}
+.spark-login-page .astra-login-card h1 {
+  font-size: 30px;
+  color: #111b4b;
+  margin: 10px 0 13px;
+}
+.spark-login-page .astra-login-card p {
+  color: #5b77a1;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.spark-login-page .astra-sign-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 14px 18px;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.spark-login-page .astra-sign-in:hover {
+  background: #1d4ed8;
+}
+.spark-login-page .ms-icon {
+  background: white;
+  padding: 3px;
+  border-radius: 3px;
+}
+.spark-login-page .astra-login-card > small {
+  display: block;
+  color: #8a9bb5;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.spark-login-page .astra-login-footer {
+  font-size: 9px;
+  color: #8a9bb5;
+  text-align: center;
+  padding-top: 35px;
+}
+.spark-login-page .astra-login-divider {
+  margin: 30px 0 23px;
+  color: #8a9bb5;
+  font-size: 9px;
+}
+html[data-color-mode='dark']
+  .admin-shell
+  :is(
+    .page-heading,
+    .toolbar,
+    .ticket-read-scope,
+    .queue-health,
+    .notice,
+    .composer,
+    .ticket-summary,
+    .v38-message,
+    .setup-link
+  ) {
+  color: var(--ink);
+  background: var(--spark-surface);
+  border-color: var(--line);
+}
+html[data-color-mode='dark'] .admin-shell .sidebar nav a {
+  color: #a5b4ca;
+}
+html[data-color-mode='dark'] .admin-shell .sidebar nav a[aria-current='page'] {
+  color: #fff;
+}
+html[data-color-mode='dark']
+  .admin-shell
+  :is(h1, h2, h3, strong, td, .breadcrumb) {
+  color: var(--ink);
+}
+@media (min-width: 1001px) {
+  .spark-preview .menu-button {
+    display: inline-flex;
+  }
+  body[data-sidebar-collapsed='true'] {
+    --spark-sidebar: 82px;
+  }
+  body[data-sidebar-collapsed='true'] .sidebar .brand > span,
+  body[data-sidebar-collapsed='true'] .sidebar .nav-label,
+  body[data-sidebar-collapsed='true'] .workspace-nav-group-label,
+  body[data-sidebar-collapsed='true'] .sidebar nav a > span:last-child,
+  body[data-sidebar-collapsed='true'] .sidebar-bottom {
+    display: none;
+  }
+  body[data-sidebar-collapsed='true'] .sidebar {
+    padding-inline: 12px;
+  }
+  body[data-sidebar-collapsed='true'] .sidebar .brand {
+    padding-inline: 0;
+    margin-inline: 0;
+  }
+  body[data-sidebar-collapsed='true'] .sidebar nav a {
+    justify-content: center;
+    padding: 12px;
+  }
+}
+@media (max-width: 1250px) {
+  .spark-search-trigger {
+    width: 160px;
+  }
+  .admin-shell .topbar {
+    padding-inline: 22px;
+    gap: 12px;
+  }
+  .admin-shell .topbar .profile > .secondary {
+    display: none;
+  }
+  .admin-shell .corporate-metric {
+    padding: 16px 14px;
+    gap: 10px;
+  }
+  .admin-shell .corporate-metric-icon {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+}
+@media (max-width: 1000px) {
+  .admin-shell .sidebar {
+    transform: translateX(-100%);
+    transition: transform 180ms;
+  }
+  .admin-shell .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 12px 0 40px #111b4b22;
+  }
+  .admin-shell .workspace {
+    margin-left: 0;
+    width: 100%;
+  }
+  .admin-shell .menu-button {
+    display: flex;
+  }
+  .admin-shell .corporate-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .spark-login-container {
+    min-height: 600px;
+  }
+  .spark-login-page .astra-login-hero,
+  .spark-login-page .astra-login-main {
+    padding: 36px;
+  }
+  .spark-login-page .astra-login-hero {
+    min-height: 600px;
+  }
+}
+@media (max-width: 700px) {
+  .admin-shell .workspace > main,
+  .admin-shell .workspace main.v38-content {
+    padding: 22px 16px;
+  }
+  .admin-shell .topbar {
+    height: 66px;
+    padding-inline: 16px;
+    gap: 10px;
+  }
+  .admin-shell .breadcrumb {
+    font-size: 12px;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .spark-search-trigger {
+    width: 35px;
+    height: 35px;
+    padding: 9px;
+    background: transparent;
+  }
+  .spark-search-trigger > span,
+  .spark-search-trigger kbd,
+  .admin-shell .topbar .profile > div {
+    display: none;
+  }
+  .spark-navbar-tools {
+    gap: 6px;
+  }
+  .admin-shell .corporate-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .corporate-heading {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .admin-shell .corporate-metric {
+    min-height: 100px;
+  }
+  .admin-shell .corporate-metric strong {
+    font-size: 23px;
+  }
+  .admin-shell .corporate-metric small {
+    font-size: 10px;
+  }
+  .admin-shell .corporate-metric-arrow {
+    display: none;
+  }
+  .spark-login-page.astra-login {
+    padding: 16px;
+  }
+  .spark-login-container {
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+    min-height: auto;
+  }
+  .spark-login-page .astra-login-hero {
+    display: none;
+  }
+  .spark-login-page .astra-login-main {
+    padding: 42px 28px;
+    min-height: 600px;
+  }
+  .corporate-section-label > span {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .admin-shell .corporate-metric-icon {
+    display: none;
+  }
+  .admin-shell .topbar .profile > .avatar {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.astra-global-theme-toggle {
+  position: fixed;
+  top: 88px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.astra-global-theme-toggle .workspace-theme-toggle {
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 640px) {
+  .astra-global-theme-toggle {
+    top: 84px;
+    right: 12px;
+  }
+}

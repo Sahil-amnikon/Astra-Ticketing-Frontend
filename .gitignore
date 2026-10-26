@@ -16,3 +16,10 @@ backups/
 # Windows local handoff settings
 .env.windows
 .env.local
+
+# Local UI review artifacts
+artifacts/ui/
+
+/frontend/.next-preview/
+
+/.local/

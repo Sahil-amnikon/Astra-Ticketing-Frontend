@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
+    "frontend",
     "apps/*"
   ],
   "engines": {
@@ -10,7 +11,7 @@
   },
   "scripts": {
     "build": "npm run build --workspace @amnikon/api && npm run build --workspace @amnikon/web",
-    "typecheck": "tsc -p apps/api/tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit",
+    "typecheck": "tsc -p apps/api/tsconfig.json --noEmit && tsc -p frontend/tsconfig.json --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -20,7 +21,14 @@
     "db:migrate": "node scripts/migrate.cjs",
     "db:seed": "node scripts/seed.cjs",
     "verify": "npm run typecheck && npm run lint && npm run format:check && npm test && npm run test:integration && npm run build && npm run test:e2e",
-    "test:smoke": "node scripts/smoke-unavailable.cjs"
+    "test:smoke": "node scripts/smoke-unavailable.cjs",
+    "dev": "npm run dev --workspace @amnikon/web",
+    "build:web": "npm run build --workspace @amnikon/web",
+    "typecheck:web": "tsc -p frontend/tsconfig.json --noEmit",
+    "dev:preview": "node scripts/preview-ui.cjs --dev",
+    "test:ui": "playwright test -c playwright.ui.config.ts",
+    "preview": "node scripts/preview-ui.cjs",
+    "preview:https": "node scripts/https-preview.cjs"
   },
   "dependencies": {
     "knex": "3.3.0",

@@ -14,7 +14,7 @@ const env = {
 const processes = [
   ['apps/api/dist/src/main.js', env],
   ['apps/api/dist/src/worker.js', env],
-  ['apps/web/.next/standalone/apps/web/server.js', { ...env, PORT: '3000' }],
+  ['frontend/.next/standalone/frontend/server.js', { ...env, PORT: '3000' }],
 ].map(([file, processEnv]) =>
   spawn(process.execPath, [file], { env: processEnv, stdio: 'inherit' }),
 );
