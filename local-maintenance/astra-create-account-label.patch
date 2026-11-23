@@ -1,0 +1,62 @@
+diff --git a/ASTRA-Frontend-latest/src/pages/admin/record-form.tsx b/ASTRA-Frontend-latest/src/pages/admin/record-form.tsx
+index 3f3d5d0..7a0255f 100644
+--- a/ASTRA-Frontend-latest/src/pages/admin/record-form.tsx
++++ b/ASTRA-Frontend-latest/src/pages/admin/record-form.tsx
+@@ -406,9 +406,9 @@ export default function RecordForm({
+ 
+   if (resource === 'users' && !record && isAdmin && demoAvailable && creatingDemo) {
+     return (
+-      <section className="panel editor" aria-label="Create demo staff account">
++      <section className="panel editor" aria-label="Create account">
+         <div className="section-heading">
+-          <h2>Create demo staff account</h2>
++          <h2>Create account</h2>
+           <button type="button" className="secondary" disabled={busy} onClick={() => {
+             setCreatingDemo(false);
+             setLookupDomain('');
+@@ -522,7 +522,7 @@ export default function RecordForm({
+             {error && <div className="notice error wide" role="alert">{error}</div>}
+             <div className="wide">
+               <button type="submit" className="primary" disabled={busy || !demoAssignmentReady || !!lookupDomain}>
+-                {busy ? 'Creating…' : 'Create demo staff account'}
++                {busy ? 'Creating…' : 'Create account'}
+               </button>
+             </div>
+           </fieldset>
+@@ -645,18 +645,25 @@ export default function RecordForm({
+             ? 'user access'
+             : resource.replace(/ies$/, 'y').replace(/s$/, '')}
+         </h2>
+-        <button className="secondary" onClick={onCancel} disabled={busy}>
+-          Cancel
+-        </button>
++        <div className="heading-actions" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end', gap: 12 }}>
++          {resource === 'users' && !record && isAdmin && demoAvailable && (
++            <button
++              type="button"
++              className="secondary"
++              disabled={busy}
++              onClick={() => {
++                setCreatingDemo(true);
++                setError('');
++              }}
++            >
++              Create account
++            </button>
++          )}
++          <button className="secondary" onClick={onCancel} disabled={busy}>
++            Cancel
++          </button>
++        </div>
+       </div>
+-      {resource === 'users' && !record && isAdmin && demoAvailable && (
+-        <button type="button" className="secondary" disabled={busy} onClick={() => {
+-          setCreatingDemo(true);
+-          setError('');
+-        }}>
+-          Create demo staff account
+-        </button>
+-      )}
+       {resource === 'users' && !record ? (
+         <form onSubmit={lookup} className="lookup">
+           <label>

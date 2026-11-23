@@ -1,0 +1,775 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* SPARK reference: Inter; 34px page titles, 16px navigation, 14px data,
+   13px column headings and 12px supporting text. */
+html body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+html body :is(button, input, select, textarea, table) {
+  font-family: inherit;
+}
+html body main h1 {
+  font-size: 34px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.8px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+html body main h2 {
+  font-size: 20px !important;
+  line-height: 1.35;
+  letter-spacing: -0.25px;
+  font-weight: 650;
+}
+html body main h3 {
+  font-size: 19px !important;
+  line-height: 1.35;
+  font-weight: 650;
+}
+html body main p {
+  font-size: 15px;
+  line-height: 1.55;
+}
+html
+  body
+  .admin-shell
+  :is(.page-heading, .corporate-heading)
+  > div
+  > p:not(.eyebrow),
+html body .administration-hero > div > span {
+  font-size: 15px;
+  line-height: 1.55;
+}
+html
+  body
+  :is(.eyebrow, .service-kicker, .groups-kicker, .support-eyebrow, .label) {
+  font-size: 12px;
+  line-height: 1.5;
+}
+html
+  body
+  :is(
+    .hint,
+    .muted,
+    small,
+    .access-scope-note,
+    .access-people-hint,
+    .access-matrix-heading p
+  ) {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+html body .admin-shell .sidebar {
+  width: 260px;
+}
+html body .admin-shell .workspace {
+  margin-left: 260px;
+  min-width: 0;
+}
+html body .admin-shell .sidebar nav a {
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 46px;
+  gap: 12px;
+  padding: 10px 12px;
+  font-weight: 400;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+html body .sidebar :is(.nav-label, .workspace-nav-group-label) {
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+html body .sidebar .nav-symbol {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 24px;
+}
+html body .sidebar .nav-symbol svg {
+  width: 19px;
+  height: 19px;
+}
+html body .sidebar-bottom > a {
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 42px;
+}
+html body .sidebar-bottom small {
+  font-size: 12px;
+}
+html body .admin-shell .topbar {
+  min-height: 76px;
+  height: 76px;
+  padding: 0 28px;
+  gap: 16px;
+}
+html body .topbar .breadcrumb {
+  font-size: 16px;
+  line-height: 1.5;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html body .topbar .profile {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 14px;
+  line-height: 1.4;
+}
+html body .topbar .profile small {
+  font-size: 12px;
+}
+html body .topbar :is(.secondary, .notification-trigger, .theme-control) {
+  min-height: 42px;
+  font-size: 13px;
+}
+html body .topbar .theme-control {
+  width: 42px;
+  flex: 0 0 42px;
+}
+html body .workspace main {
+  min-width: 0;
+  max-width: 1800px;
+  padding: 30px 30px 56px;
+}
+html body .page-heading {
+  gap: 20px;
+  padding: 26px;
+}
+
+html body main :is(button, .primary, .secondary) {
+  font-size: 14px !important;
+  line-height: 1.45;
+}
+html
+  body
+  main
+  :is(button, .primary, .secondary):not(.access-module button):not(
+    .board-card
+  ):not(.problem-record) {
+  min-height: 40px;
+}
+html body main :is(label, legend) {
+  font-size: 14px;
+  line-height: 1.5;
+  min-width: 0;
+}
+html body main :is(input, select, textarea) {
+  font-size: 14px !important;
+  line-height: 1.5;
+  min-width: 0;
+  max-width: 100%;
+}
+html
+  body
+  main
+  :is(
+    input:not([type='checkbox']):not([type='radio']):not([type='hidden']),
+    select
+  ) {
+  min-height: 44px;
+}
+html body main :is(input[type='checkbox'], input[type='radio']) {
+  min-height: 0;
+  flex-shrink: 0;
+}
+html
+  body
+  main
+  :is(
+    .toolbar,
+    .queue-toolbar,
+    .filter-bar,
+    .record-actions,
+    .heading-actions,
+    .actions,
+    .pager,
+    .problem-paging
+  ) {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+html
+  body
+  main
+  :is(
+    .panel,
+    .editor,
+    form,
+    fieldset,
+    .picker,
+    .chart-panel,
+    .form-grid,
+    .record-grid,
+    .ticket-detail-grid,
+    .access-columns,
+    .service-content-grid
+  ) {
+  min-width: 0;
+}
+html body main fieldset {
+  min-inline-size: 0;
+}
+html body main :is(.toolbar, .filter-bar) > label {
+  min-width: 160px;
+  flex: 1 1 180px;
+}
+html body main :is(.toolbar, .filter-bar) :is(.search, .picker) {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+html body main .toolbar > .search {
+  max-width: none;
+}
+
+html body main table {
+  font-size: 14px;
+  line-height: 1.5;
+}
+html body main table th {
+  font-size: 13px !important;
+  line-height: 1.5;
+  font-weight: 600;
+  padding: 14px 16px;
+}
+html body main table td {
+  font-size: 14px !important;
+  line-height: 1.5;
+  padding: 15px 16px;
+}
+html body main table td strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+html body main table :is(small, .hint, .muted) {
+  font-size: 12px;
+  line-height: 1.5;
+}
+html
+  body
+  main
+  :is(
+    .badge,
+    .status,
+    .corporate-pill,
+    .technology-tag,
+    .access-badge,
+    .priority-pill,
+    .service-status
+  ) {
+  font-size: 12px;
+  line-height: 1.45;
+}
+html body main :is(div, section):has(> table) {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+html
+  body
+  main
+  :is(.table-wrap, .table-scroll, .table-container, .access-table-scroll) {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+html body main :is(.record-tabs, .composer-tabs, .access-tabs) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%;
+}
+html body main :is(.record-tabs, .composer-tabs, .access-tabs) button {
+  font-size: 14px;
+  line-height: 1.45;
+  padding: 10px 16px;
+  white-space: normal;
+}
+html
+  body
+  :is(
+    .access-metric strong,
+    .administration-metric > strong,
+    .corporate-metric strong,
+    .ticket-stat strong,
+    .stat strong
+  ) {
+  font-size: 32px;
+  line-height: 1.2;
+}
+html body .access-selector .access-options {
+  max-height: min(650px, 65dvh);
+}
+html body .access-options strong {
+  font-size: 14px;
+  line-height: 1.5;
+}
+html body .access-matrix-heading {
+  align-items: flex-start;
+}
+html body .access-check {
+  font-size: 12px;
+}
+html body :is(.access-footer, .access-actions) {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+html body .access-manage {
+  font-size: 13px;
+}
+html body .service-stat h2 {
+  font-size: 14px !important;
+  line-height: 1.5;
+}
+html body .service-stat strong {
+  font-size: 32px;
+  line-height: 1.2;
+}
+html body :is(.access-permission-options, .technology-tag-options) label {
+  min-height: 36px;
+  align-items: center;
+}
+html body :is(.access-permission-options, .technology-tag-options) input {
+  width: 17px;
+  height: 17px;
+}
+html body :is(.modal, .dialog, .delete-dialog, .modal-card, [role='dialog']) {
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+}
+html body :is(.notification-panel, .notification-popover, .help-panel) {
+  max-width: calc(100vw - 24px);
+}
+html body main :is(pre, .mail-preview) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+html body :is(.audit-details, dl.audit-details) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  html body .admin-shell .sidebar {
+    top: 76px;
+    height: calc(100dvh - 76px);
+    transform: translateX(-100%);
+    width: 280px;
+    max-width: calc(100vw - 32px);
+    z-index: 90;
+  }
+  html body .admin-shell .sidebar.open {
+    transform: translateX(0);
+  }
+  html body .admin-shell .workspace {
+    margin-left: 0;
+  }
+  html body .admin-shell .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  html body .admin-shell .topbar .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    flex: 0 0 42px;
+    padding: 8px;
+  }
+  html body .admin-shell .sidebar > .brand {
+    display: none;
+  }
+  html body .workspace main {
+    padding: 24px;
+  }
+  html body .access-columns {
+    grid-template-columns: 235px minmax(0, 1fr);
+  }
+  html
+    body
+    :is(
+      .ticket-detail-grid,
+      .record-grid,
+      .overview-grid,
+      .corporate-main-grid
+    ) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  html body .admin-shell .topbar {
+    height: 66px;
+    min-height: 66px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  html body .admin-shell .sidebar {
+    top: 66px;
+    height: calc(100dvh - 66px);
+  }
+  html body .topbar .breadcrumb {
+    display: block;
+    font-size: 14px;
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+  html body .topbar .profile {
+    margin-left: 0;
+    gap: 7px;
+  }
+  html body .topbar .profile > .avatar,
+  html body .topbar .profile > div:not(.notification-center),
+  html body .topbar .profile > a[href='/'] {
+    display: none;
+  }
+  html body .topbar :is(.notification-trigger, .theme-control, .secondary) {
+    min-height: 42px;
+  }
+  html body .topbar .profile > button.secondary {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  html body .workspace main {
+    padding: 20px 16px 40px;
+  }
+  html body main h1 {
+    font-size: 28px !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.5px;
+  }
+  html body main h2 {
+    font-size: 20px !important;
+  }
+  html body .page-heading {
+    padding: 20px;
+    min-height: 0;
+    flex-wrap: wrap;
+  }
+  html
+    body
+    main
+    :is(input:not([type='checkbox']):not([type='radio']), select, textarea) {
+    font-size: 16px !important;
+  }
+  html
+    body
+    main
+    :is(
+      .form-grid,
+      .role-profile-grid,
+      .permission-grid,
+      .problem-fields,
+      .problem-filters,
+      .service-filter-form,
+      .support-main,
+      .record-grid,
+      .ticket-detail-grid,
+      .overview-grid,
+      .administration-areas,
+      .administration-bottom,
+      .access-columns,
+      .service-content-grid,
+      .corporate-distributions
+    ) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html
+    body
+    main
+    :is(.wide, .form-grid > .wide, .service-filter-form label:nth-child(3)) {
+    grid-column: 1 / -1;
+  }
+  html body main :is(.toolbar, .filter-bar) {
+    align-items: stretch;
+  }
+  html body main :is(.toolbar, .filter-bar) > label {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  html
+    body
+    :is(
+      .stats,
+      .ticket-stats,
+      .corporate-metrics,
+      .administration-metrics,
+      .access-summary
+    ) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  html body .access-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html
+    body
+    :is(
+      .access-metric strong,
+      .administration-metric > strong,
+      .corporate-metric strong,
+      .ticket-stat strong,
+      .stat strong
+    ) {
+    font-size: 28px;
+  }
+  html body .access-columns .access-options {
+    max-height: 260px;
+  }
+  html body .access-matrix-heading {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  html body .access-table {
+    min-width: 560px;
+  }
+  html body :is(.access-footer, .access-actions) {
+    justify-content: flex-start;
+  }
+  html body :is(.access-footer > small, .access-actions > p) {
+    flex-basis: 100%;
+  }
+  html body :is(.record-tabs, .composer-tabs, .access-tabs) {
+    gap: 6px;
+  }
+  html body :is(.record-tabs, .composer-tabs, .access-tabs) button {
+    padding: 10px 12px;
+  }
+  html body :is(.administration-hero, .support-main, .support-header) {
+    padding: 20px;
+    gap: 20px;
+  }
+  html body .administration-hero > svg {
+    display: none;
+  }
+  html body .support-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html body dl.audit-details > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}
+@media (max-width: 360px) {
+  html body .workspace main {
+    padding: 16px 12px 32px;
+  }
+  html body .topbar .breadcrumb {
+    font-size: 12px;
+  }
+  html body .topbar .breadcrumb::before {
+    display: none;
+  }
+  html body .admin-shell .topbar {
+    gap: 6px;
+    padding: 0 8px;
+  }
+  html
+    body
+    :is(.stats, .ticket-stats, .corporate-metrics, .administration-metrics) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html body .access-tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  html body .access-tabs button {
+    flex: 1 1 120px;
+  }
+}
+
+/* Custom report and public-support surfaces share the same dark palette. */
+html[data-theme='dark'] :is(.service-performance, .support-portal) {
+  color: var(--ink);
+}
+html[data-theme='dark'] .support-portal {
+  background: #101a2b;
+}
+html[data-theme='dark']
+  :is(
+    .service-panel,
+    .service-scope-panel,
+    .service-stat,
+    .service-definitions,
+    .support-header,
+    .support-card
+  ) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :is(
+    .service-presets,
+    .service-reading,
+    .service-flow-track,
+    .service-change-track,
+    .service-panel-icon,
+    .support-note
+  ) {
+  background: var(--surface-muted);
+  color: var(--muted);
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :is(.service-performance h2, .service-performance strong, .support-brand) {
+  color: var(--ink);
+}
+html[data-theme='dark']
+  :is(
+    .service-filter-form label,
+    .service-kicker,
+    .service-flow-numbers > div > span:not(.service-dot),
+    .service-flow-numbers small,
+    .service-flow-bars > div,
+    .service-flow-note,
+    .service-stat p,
+    .service-stat h2,
+    .service-stat strong small,
+    .service-presets button,
+    .service-definitions,
+    .support-intro > p,
+    .support-intro li,
+    .support-brand small
+  ) {
+  color: var(--muted);
+}
+html[data-theme='dark'] .service-filter-form :is(input, select) {
+  background: var(--surface-muted);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark'] .service-backlog {
+  background: linear-gradient(145deg, #3c3324, #2c2924);
+  border-color: #6e5c3c;
+}
+html[data-theme='dark'] .service-backlog :is(h2, .service-backlog-value) {
+  color: #f0d4a1;
+}
+html[data-theme='dark']
+  .service-backlog
+  :is(p, .service-kicker, .service-backlog-note) {
+  color: #d6c29c;
+}
+html[data-theme='dark']
+  :is(.service-performance, .corporate-dashboard)
+  svg
+  text {
+  fill: var(--muted);
+}
+html[data-theme='dark']
+  :is(
+    .queue-summary > article,
+    .ticket-filter-grid,
+    .results-heading,
+    .calendar-card,
+    .help-guide-topic-card,
+    .report-donut-centre,
+    .report-stack-summary,
+    .report-owner-picker,
+    .groups-type-cards > div
+  ) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark'] :is(.site-domain-help, .groups-intro) {
+  background: var(--surface-muted);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark'] .ticket-results-panel tr.selected,
+html[data-theme='dark'] .ticket-results-panel tr.selected > td {
+  background: var(--blue-soft);
+  color: var(--ink);
+}
+html[data-theme='dark']
+  :is(
+    .groups-workspace,
+    .groups-intro h2,
+    .groups-type-cards strong,
+    .report-donut-centre strong,
+    .report-stack-summary strong
+  ) {
+  color: var(--ink);
+}
+html[data-theme='dark']
+  :is(
+    .groups-intro p,
+    .groups-type-cards p,
+    .site-domain-help p,
+    .help-guide-topic-card p,
+    .report-stack-summary small
+  ) {
+  color: var(--muted);
+}
+html[data-theme='dark'] :is(.service-loading, .service-empty) {
+  background: var(--surface);
+  color: var(--muted);
+  border-color: var(--line);
+}
+html[data-theme='dark'] .service-loading p {
+  color: var(--muted);
+}
+html body main details:has(> .audit-details) {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+html body dl.audit-details :is(div, dt, dd) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+html body dl.audit-details > div {
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 1fr);
+}
+@media (max-width: 760px) {
+  html body dl.audit-details > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+html[data-theme='dark'] .report-owner-menu {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark'] main tbody tr:hover {
+  background: var(--blue-soft);
+}
+@media (max-width: 760px) {
+  html body main table:not(.audit-details) {
+    min-width: 640px;
+  }
+  html body main table.audit-details {
+    min-width: 360px;
+  }
+  html body .topbar .account > span {
+    display: none;
+  }
+  html body .topbar .account {
+    gap: 7px;
+    min-width: 0;
+  }
+  html body .topbar .account > button {
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}

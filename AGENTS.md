@@ -1,11 +1,10 @@
-# Amnikon development rules
+# ASTRA frontend development
 
-Read docs/master-development-prompt.md before making changes. It is the supplied
-product specification. Phase 0 was validated in LAB, Phase 1 v9 was validated in
-LAB, and the user explicitly approved the Phase 2 ticket engine and focused
-Technician/Admin workspaces on 15 September 2026. Current scope is Phase 2 only.
+This repository contains the current React/TypeScript/Vite frontend. Earlier Next.js/NestJS/PostgreSQL instructions describe historical versions, retained in Git history.
 
-Use the existing Next.js/NestJS/PostgreSQL architecture. Maintain strict TypeScript,
-server-side security boundaries, documentation and meaningful tests. Never add
-real credentials or claim unexecuted tests passed. See docs/validation.md for the
-last recorded results and remaining environment-dependent checks.
+- Read README.md and preserve the current backend API contract and workspace access rules.
+- Keep credentials, generated builds, application data and diagnostic logs out of Git.
+- Run `npm run build` for frontend changes; add focused verification for meaningful behavior changes.
+- Enforce authorization in the backend, not just by hiding UI controls.
+- Use the existing maintenance deployment workflow. A source push is not permission to change production data or deploy.
+- Report verification honestly. Do not create backups or database copies unless the user explicitly requests them.

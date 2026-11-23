@@ -1,0 +1,9 @@
+html.spark-ui body .panel.ticket-information { padding: 18px 22px; margin: 0 0 18px; }
+html.spark-ui body .ticket-information h2 { margin: 0 0 16px; font-size: 16px; line-height: 1.4; }
+.ticket-information-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 24px; margin: 0; }
+.ticket-information-grid > div { min-width: 0; }
+.ticket-information-grid dt { margin: 0 0 5px; font-size: 12px; font-weight: 600; color: var(--spark-text, #18244a); line-height: 1.4; }
+.ticket-information-grid dd { margin: 0; font-size: 13px; font-weight: 400; color: var(--spark-muted, #61728d); line-height: 1.5; overflow-wrap: anywhere; }
+html.spark-ui body .panel.ticket-claim-panel { margin-bottom: 18px; }
+@media (max-width: 1100px) { .ticket-information-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px) { html.spark-ui body .panel.ticket-information { padding: 16px; } .ticket-information-grid { grid-template-columns: 1fr; gap: 12px; } }

@@ -1,0 +1,38 @@
+.change-review-workspace { display: grid; gap: 18px; }
+.change-review-filters { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; align-items: end; }
+.change-review-filters label { display: grid; gap: 8px; min-width: 0; }
+.change-review-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.change-review-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.change-review-heading h2 { margin: 0 0 8px; }
+.change-review-table { overflow-x: auto; }
+.change-review-table table { width: 100%; border-collapse: collapse; min-width: 780px; }
+.change-review-table th,.change-review-table td { padding: 14px; text-align: left; border-bottom: 1px solid var(--line,#dce5f2); vertical-align: top; }
+.change-review-table th { color: var(--spark-muted,#61728d); background: var(--spark-hover,#edf3ff); font-weight: 600; white-space: nowrap; }
+.change-review-table td > span:not(.change-review-status) { display: block; color: var(--spark-muted,#61728d); font-size: 12px; margin-top: 5px; }
+.change-review-status { display: inline-block; border-radius: 8px; padding: 5px 8px; white-space: nowrap; background: var(--spark-hover,#edf3ff); font-size: 12px; }
+.change-review-status.status-approved { color: #15734f; background: #e6f5ee; }
+.change-review-status.status-rejected { color: #a33c31; background: #fff0ed; }
+.change-review-pagination { margin-top: 18px; color: var(--spark-muted,#61728d); font-size: 13px; }
+.change-review-facts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin: 20px 0; }
+.change-review-facts dt { font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+.change-review-facts dd { margin: 0; font-size: 13px; overflow-wrap: anywhere; }
+.change-review-detail h3 { font-size: 14px; margin: 20px 0 8px; }
+.change-review-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.change-review-detail textarea { width: 100%; margin: 8px 0 14px; }
+@media(max-width:900px) { .change-review-filters,.change-review-facts { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:540px) { .change-review-filters,.change-review-facts { grid-template-columns: 1fr; } .change-review-heading { align-items: flex-start; flex-direction: column; } }
+
+/* Review details live outside the page layout so the popup stays centered. */
+html body .change-review-modal-backdrop{position:fixed;inset:0;z-index:1500;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;background:rgb(20 36 66 / 45%)}
+html body .change-review-dialog{width:min(100%,1120px);max-height:calc(100dvh - 48px);min-height:0;margin:0;padding:24px;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;transform:none;animation:none;background:var(--spark-surface,#fff);color:var(--spark-text,#18244a);border-radius:16px;box-shadow:0 20px 70px rgb(12 23 54 / 24%)}
+.change-review-dialog>.change-review-heading{align-items:flex-start;flex-direction:row}.change-review-dialog>.change-review-heading h2{overflow-wrap:anywhere}.change-review-dialog>.change-review-heading button{flex-shrink:0;margin-left:auto}.change-review-dialog .change-review-decision{margin-top:20px;padding-top:16px;border-top:1px solid var(--spark-border,#dce5f2)}.change-review-dialog .change-review-decision>.change-review-actions{justify-content:flex-end}.change-review-dialog textarea{box-sizing:border-box;resize:vertical}
+@media(max-width:650px){html body .change-review-modal-backdrop{padding:10px}html body .change-review-dialog{max-height:calc(100dvh - 20px);padding:18px}}
+
+/* Keep review labels bold even when the popup is portalled outside the workspace. */
+html body .change-review-dialog h3,
+html body .change-review-dialog .change-review-facts dt,
+html body .change-review-dialog .change-review-decision > label {
+  font-weight: 700;
+  color: var(--spark-text, #18244a);
+}
+html body .change-review-dialog h3 { font-size: 14px; margin: 20px 0 8px; }

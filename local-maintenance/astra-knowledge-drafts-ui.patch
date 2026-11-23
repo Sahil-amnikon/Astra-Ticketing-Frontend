@@ -1,0 +1,90 @@
+--- a/ASTRA-Frontend-latest/src/pages/knowledge/knowledge-workspace.tsx
++++ b/ASTRA-Frontend-latest/src/pages/knowledge/knowledge-workspace.tsx
+@@ -24,4 +24,5 @@
+   active?: boolean;
+   revision?: number;
++  can_edit_own_draft?: boolean;
+   updated_at: string;
+ };
+@@ -30,4 +31,5 @@
+   total?: number;
+   canManage: boolean;
++  canDraft?: boolean;
+   isAdmin: boolean;
+ };
+@@ -55,4 +57,5 @@
+     ['INTERN', 'TECHNICIAN', 'TEAM_LEAD', 'MANAGER', 'ADMIN'].includes(r),
+   );
++  const draftOnly = !catalogue && !data?.canManage && data?.canDraft;
+   const endpoint = catalogue ? '/knowledge/catalogue' : '/knowledge';
+   useEffect(() => {
+@@ -85,5 +88,5 @@
+   async function open(entry: Entry) {
+     setSelected(entry);
+-    if (staff && !catalogue)
++    if (staff && !catalogue && (data?.canManage || entry.status === 'PUBLISHED'))
+       try {
+         const t = await request<{ items: typeof tickets }>(
+@@ -161,5 +164,5 @@
+           </button>
+         </form>
+-        {data?.canManage ? (
++        {data?.canManage || (draftOnly && options.clients.length > 0) ? (
+           <button
+             className="primary"
+@@ -192,6 +195,6 @@
+                   categoryId: optionalField(f, 'category'),
+                   clientId: optionalField(f, 'client'),
+-                  visibility: field(f, 'visibility'),
+-                  status: field(f, 'status'),
++                  visibility: draftOnly ? 'STAFF' : field(f, 'visibility'),
++                  status: draftOnly ? 'DRAFT' : field(f, 'status'),
+                   revision: editor?.revision,
+                 };
+@@ -238,5 +241,8 @@
+                 name="client"
+                 required={!data?.isAdmin}
+-                defaultValue={editor?.client_id ?? ''}
++                defaultValue={
++                  editor?.client_id ??
++                  (draftOnly && options.clients.length === 1 ? options.clients[0]!.id : '')
++                }
+               >
+                 <option value="">
+@@ -271,4 +277,8 @@
+               />
+             </label>
++          ) : draftOnly ? (
++            <p className="hint">
++              Your article will be saved as a staff-only draft. A manager or administrator can publish it.
++            </p>
+           ) : (
+             <div className="v38-form-grid">
+@@ -317,5 +327,5 @@
+           ) : null}
+           <button className="primary" disabled={w.busy}>
+-            Save {catalogue ? 'service' : 'article'}
++            Save {catalogue ? 'service' : draftOnly ? 'draft' : 'article'}
+           </button>
+         </form>
+@@ -346,5 +356,5 @@
+               ) : null}
+             </>
+-          ) : staff ? (
++          ) : staff && (data?.canManage || selected.status === 'PUBLISHED') ? (
+             <form
+               className="v38-row"
+@@ -382,5 +392,5 @@
+             <div className="v38-row">
+               <span className="v38-chip">{x.category_name ?? 'General'}</span>
+-              {data?.canManage ? (
++              {data?.canManage || x.can_edit_own_draft ? (
+                 <small>
+                   {catalogue
+@@ -405,5 +415,5 @@
+               {(x.body?.length ?? 0) > 240 ? '…' : ''}
+             </p>
+-            {data?.canManage && (data.isAdmin || x.client_id) ? (
++            {(data?.canManage && (data.isAdmin || x.client_id)) || x.can_edit_own_draft ? (
+               <button
+                 type="button"

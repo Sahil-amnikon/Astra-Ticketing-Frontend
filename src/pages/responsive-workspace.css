@@ -1,0 +1,201 @@
+/* Shared workspace sizing. Wide data scrolls inside cards, never the whole page. */
+html.spark-ui body .administration-oversight {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+html.spark-ui body .administration-oversight > :is(h2, p) {
+  margin: 0;
+}
+html.spark-ui body .administration-oversight > a {
+  justify-self: start;
+}
+html.spark-ui body .ticket-badges {
+  align-items: center;
+}
+html.spark-ui body .ticket-badges > .ticket-badge {
+  align-items: center;
+}
+html.spark-ui body .admin-shell {
+  width: 100%;
+  min-width: 0;
+}
+html.spark-ui body .admin-shell .workspace {
+  min-width: 0;
+}
+html.spark-ui body .admin-shell .workspace main {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+html.spark-ui body .admin-shell :is(.panel, .editor, .ticket-queue-layout,
+  .ticket-results-panel, .queue-side-panel, .ticket-detail-grid, .change-grid,
+  .corporate-main-grid, .ticket-form, .table-scroll) {
+  min-width: 0;
+  max-width: 100%;
+}
+html.spark-ui body .admin-shell .table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+html.spark-ui body .admin-shell .topbar {
+  height: auto;
+  min-height: 72px;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  gap: 12px;
+}
+html.spark-ui body .admin-shell .topbar .breadcrumb {
+  min-width: 0;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+}
+html.spark-ui body .admin-shell .topbar .profile {
+  min-width: 0;
+  max-width: 100%;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+html.spark-ui body .admin-shell :is(.page-heading, .corporate-heading, .results-heading) {
+  flex-wrap: wrap;
+}
+html.spark-ui body .admin-shell :is(.quick-preview, .preview-description, .record-summary) {
+  overflow-wrap: anywhere;
+}
+html.spark-ui body .ticket-shell .queue-toolbar {
+  container-type: inline-size;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) repeat(4, minmax(0, 1fr)) auto auto auto;
+  align-items: center;
+  gap: 10px;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools > * {
+  min-width: 0;
+  max-width: 100%;
+  grid-row: auto;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools > .compact-select {
+  display: block;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools .compact-select select {
+  width: 100%;
+  min-width: 0;
+  text-overflow: ellipsis;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools .layout-switch {
+  flex-wrap: nowrap;
+  margin-left: 0;
+}
+@container (max-width: 1050px) {
+  html.spark-ui body .ticket-shell .queue-primary-tools {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  html.spark-ui body .ticket-shell .queue-primary-tools .ticket-search-box {
+    grid-column: 1 / -1;
+  }
+  html.spark-ui body .ticket-shell .queue-primary-tools .layout-switch {
+    grid-column: span 2;
+    justify-self: end;
+  }
+}
+@container (max-width: 560px) {
+  html.spark-ui body .ticket-shell .queue-primary-tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+html.spark-ui body .ticket-shell .ticket-table {
+  min-width: 860px;
+}
+html.spark-ui body .ticket-shell .ticket-board {
+  max-width: 100%;
+  overflow-x: auto;
+}
+@media (max-width: 1400px) {
+  html.spark-ui body .ticket-shell .ticket-queue-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html.spark-ui body .ticket-shell .queue-side-panel {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1100px) {
+  html.spark-ui body .admin-shell .workspace { margin-left: 0; }
+  html.spark-ui body .admin-shell .sidebar {
+    top: 72px;
+    bottom: 0;
+    width: min(280px, calc(100vw - 24px));
+    height: calc(100dvh - 72px);
+    transform: translateX(-100%);
+    visibility: hidden;
+  }
+  html.spark-ui body .admin-shell .sidebar.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  html.spark-ui body .admin-shell .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  html.spark-ui body .admin-shell :is(.ticket-detail-grid, .change-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html.spark-ui body .admin-shell .topbar .profile > div:not(.notification-center) {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  html.spark-ui body .admin-shell .topbar { padding: 10px 12px; gap: 8px; }
+  html.spark-ui body .admin-shell .topbar .breadcrumb {
+    flex: 1 1 180px;
+    white-space: normal;
+    overflow: visible;
+  }
+  html.spark-ui body .admin-shell .topbar .profile {
+    gap: 6px;
+    justify-content: flex-end;
+  }
+  html.spark-ui body .admin-shell .topbar .profile > :is(button, a) {
+    min-height: 44px;
+  }
+  html.spark-ui body .admin-shell .workspace main { padding: 20px 12px 40px; }
+  html.spark-ui body .ticket-shell .queue-primary-tools .ticket-search-box {
+    flex: 1 1 100%;
+  }
+  html.spark-ui body .ticket-shell .queue-primary-tools > select {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 100%;
+    min-height: 44px;
+  }
+  html.spark-ui body .ticket-shell .queue-side-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html.spark-ui body .admin-shell :is(.ticket-filter-grid, .form-grid, .form-grid-3,
+    .corporate-overview-grid, .corporate-mix-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html.spark-ui body .admin-shell .notification-popover {
+    position: fixed;
+    top: 80px;
+    right: 12px;
+    width: min(430px, calc(100vw - 24px));
+    max-height: calc(100dvh - 96px);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 420px) {
+  html.spark-ui body .admin-shell .topbar .profile {
+    width: 100%;
+  }
+  html.spark-ui body .ticket-shell .queue-primary-tools .layout-switch {
+    margin-left: 0;
+  }
+  html.spark-ui body .astra-picker-grid { grid-template-columns: minmax(0, 1fr); }
+}

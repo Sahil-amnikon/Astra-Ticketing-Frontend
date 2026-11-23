@@ -1,0 +1,5 @@
+/* Native top-layer dialog keeps article reviews centered and traps focus. */
+html body dialog.kb-review-dialog { position: fixed; inset: 0; margin: auto; width: min(1120px, calc(100vw - 48px)); max-height: calc(100dvh - 48px); border: 1px solid var(--spark-border, #dce5f2); }
+html body dialog.kb-review-dialog::backdrop { background: rgb(20 36 66 / 45%); }
+html body dialog.kb-review-dialog textarea { width: 100%; margin-top: 8px; }
+@media(max-width:650px) { html body dialog.kb-review-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); } }

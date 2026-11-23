@@ -1,0 +1,195 @@
+/* Consistent spacing across every Change Management record tab. */
+html.spark-ui body .change-workspace-content .change-controls-stack .expandable-body > form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+}
+html.spark-ui body .change-workspace-content .change-controls-stack form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  min-width: 0;
+}
+html.spark-ui body .change-workspace-content .change-controls-stack form > label > :is(select, textarea) {
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+html.spark-ui body .change-workspace-content .change-controls-stack form > button {
+  align-self: flex-start;
+  margin: 0;
+}
+html.spark-ui body .admin-shell main.change-workspace-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+html.spark-ui body .change-workspace-content > :is(.page-heading, .panel,
+  .record-tabs, .change-grid, .metric-grid, .notice) {
+  margin-top: 0;
+  margin-bottom: 0;
+  min-width: 0;
+}
+html.spark-ui body .change-workspace-content .change-grid,
+html.spark-ui body .change-workspace-content .change-controls-stack {
+  gap: 24px;
+  min-width: 0;
+}
+html.spark-ui body .change-workspace-content .change-controls-stack {
+  display: flex;
+  flex-direction: column;
+}
+html.spark-ui body .change-workspace-content .record-tabs {
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+}
+html.spark-ui body .change-workspace-content .record-tabs button {
+  min-height: 44px;
+}
+html.spark-ui body .change-workspace-content .change-hero {
+  flex-wrap: wrap;
+  gap: 24px;
+}
+html.spark-ui body .change-workspace-content .change-hero > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+html.spark-ui body .change-workspace-content .change-hero > div:first-child {
+  flex: 1 1 300px;
+}
+html.spark-ui body .change-workspace-content .change-hero .pill {
+  display: inline-flex;
+  margin: 0 8px 8px 0;
+  padding: 4px 8px;
+  line-height: 1.5;
+}
+html.spark-ui body .change-workspace-content .panel > h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+html.spark-ui body .change-workspace-content .timeline-item {
+  display: block;
+  padding: 16px 16px 16px 24px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+html.spark-ui body .change-workspace-content .timeline-item > strong {
+  display: block;
+}
+html.spark-ui body .change-workspace-content .timeline-item > p {
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+html.spark-ui body .change-workspace-content .expandable-body > :is(p, h3, form, details) {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+html.spark-ui body .change-workspace-content .work-item {
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+}
+html.spark-ui body .change-workspace-content .inline-form {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+@media (max-width: 1000px) {
+  html.spark-ui body .change-workspace-content .change-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  html.spark-ui body .admin-shell main.change-workspace-content {
+    gap: 16px;
+  }
+  html.spark-ui body .change-workspace-content .record-tabs button {
+    flex: 1 1 auto;
+  }
+  html.spark-ui body .change-workspace-content .change-hero > div:last-child {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* Balance update forms and governance spacing without stacking duplicate margins. */
+html.spark-ui body .change-workspace-content > .panel > form:not(.inline-form) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  margin: 0 0 20px;
+}
+html.spark-ui body .change-workspace-content > .panel > form:not(.inline-form) > :is(select, textarea) {
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+html.spark-ui body .change-workspace-content > .panel > form:not(.inline-form) > button {
+  align-self: flex-start;
+  margin: 0;
+}
+html.spark-ui body .change-workspace-content .expandable-panel.v38-stack > .expandable-body {
+  gap: 14px;
+}
+html.spark-ui body .change-workspace-content .expandable-panel.v38-stack > .expandable-body > :is(p, h3, form, details, ul, div) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+html.spark-ui body .change-workspace-content .expandable-panel.v38-stack > .expandable-body > h3 {
+  padding-top: 8px;
+}
+html.spark-ui body .change-workspace-content .expandable-body > form.v38-row {
+  align-items: flex-end;
+  gap: 12px;
+}
+html.spark-ui body .change-workspace-content .expandable-body > form.v38-row > label {
+  margin: 0;
+}
+html.spark-ui body .change-workspace-content .expandable-body > form.v38-row :is(select, button) {
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 44px;
+}
+/* Round the register header without clipping scrollbars or table content. */
+html.spark-ui body .change-workspace-content .change-register-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+html.spark-ui body .change-workspace-content .change-register-table thead,
+html.spark-ui body .change-workspace-content .change-register-table thead tr {
+  background: transparent;
+}
+html.spark-ui body .change-workspace-content .change-register-table thead th:first-child {
+  border-radius: 12px 0 0 12px;
+}
+html.spark-ui body .change-workspace-content .change-register-table thead th:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+/* Keep the overview activity feed readable beside the control plan. */
+html.spark-ui body .change-workspace-content .change-activity-timeline {
+  max-height: 520px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+html.spark-ui body .change-workspace-content .change-activity-timeline .timeline-item {
+  border-left: 2px solid var(--spark-border, #dce5f2);
+  margin-left: 6px;
+  padding: 0 12px 22px 20px;
+}
+html.spark-ui body .change-workspace-content .change-activity-timeline .timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  bottom: auto;
+  border-radius: 50%;
+  background: var(--spark-primary, #2b65d9);
+}

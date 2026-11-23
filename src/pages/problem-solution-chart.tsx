@@ -1,0 +1,9 @@
+import type { ReactNode } from 'react';
+export type ProblemSolution={title:string;description:string;problem_number:string;status:string;root_cause:string;workaround:string;resolution:string};
+export default function ProblemSolutionChart({problem,ticketCount,actions}:{problem:ProblemSolution;ticketCount:number;actions?:ReactNode}){
+  const stages=[{title:'Related tickets',body:`${ticketCount} linked ticket${ticketCount===1?'':'s'} visible within your access. Review Affected tickets for the original incidents.`,ready:ticketCount>0},
+    {title:'Root cause',body:problem.root_cause||'Still under investigation. A root cause has not been confirmed.',ready:Boolean(problem.root_cause)},
+    {title:'Workaround',body:problem.workaround||'No temporary workaround recorded yet.',ready:Boolean(problem.workaround)},
+    {title:'Permanent resolution',body:problem.resolution||'No permanent fix recorded yet.',ready:Boolean(problem.resolution)}];
+  return <section id="problem-solution" className="panel problem-solution-chart" tabIndex={-1}><div className="problem-detail-heading"><div><p className="problem-eyebrow">{problem.problem_number} · {problem.status.replaceAll('_',' ')}</p><h2>Problem &amp; solution</h2><h3>{problem.title}</h3></div>{actions}</div><p className="v38-prewrap">{problem.description}</p><p className="hint">Use the documented findings below to troubleshoot related tickets. A recorded workaround helps restore service while the permanent fix is investigated.</p><ol className="problem-solution-stages">{stages.map((stage,index)=><li key={stage.title} className={stage.ready?'recorded':'pending'}><span className="problem-stage-number" aria-hidden="true">{index+1}</span><h3>{stage.title}</h3><small>{stage.ready?'Recorded':'Not recorded yet'}</small><p className="v38-prewrap">{stage.body}</p></li>)}</ol></section>;
+}

@@ -1,0 +1,70 @@
+diff --git a/ASTRA-Frontend-latest/src/pages/ticket-workspace.tsx b/ASTRA-Frontend-latest/src/pages/ticket-workspace.tsx
+index f8ca536..79da33f 100644
+--- a/ASTRA-Frontend-latest/src/pages/ticket-workspace.tsx
++++ b/ASTRA-Frontend-latest/src/pages/ticket-workspace.tsx
+@@ -623,7 +623,6 @@ function TicketWorkspaceScreen({
+             </span>
+             <div>
+               {session?.user.displayName ?? 'ASTRA'}
+-              <small>{workspaceLabel(mode)}</small>
+             </div>
+             {session ? (
+               <>
+diff --git a/ASTRA-Frontend-latest/src/pages/workspace-tools.tsx b/ASTRA-Frontend-latest/src/pages/workspace-tools.tsx
+index 51183d4..4465236 100644
+--- a/ASTRA-Frontend-latest/src/pages/workspace-tools.tsx
++++ b/ASTRA-Frontend-latest/src/pages/workspace-tools.tsx
+@@ -175,7 +175,6 @@ export function WorkspaceFrame({
+   const management = selectedWorkspace === 'management';
+   const base = administration ? '/admin' : management ? '/management' : '/operations';
+   const workspaceLabel = administration ? 'Administration' : management ? 'Management' : staff ? 'Technician Portal' : 'Client Portal';
+-  const roleLabel = workspaceLabel;
+   const allowed = (permission: string) => admin || user?.permissions?.includes('*') || user?.permissions?.includes(permission);
+   const links: [string, IconName, string][] = staff
+     ? [[base, 'dashboard', administration ? 'Overview' : 'Dashboard'], [base + '/tickets', 'tickets', selectedWorkspace === 'operations' ? 'My Tickets' : 'Tickets']]
+@@ -249,7 +248,6 @@ export function WorkspaceFrame({
+                 </span>
+                 <div className="workspace-frame-identity">
+                   <span>{user.displayName}</span>
+-                  <small>{roleLabel}</small>
+                 </div>
+               </>
+             ) : null}
+diff --git a/ASTRA-Frontend-latest/src/pages/change-workspace.tsx b/ASTRA-Frontend-latest/src/pages/change-workspace.tsx
+index c2ae200..6014f1b 100644
+--- a/ASTRA-Frontend-latest/src/pages/change-workspace.tsx
++++ b/ASTRA-Frontend-latest/src/pages/change-workspace.tsx
+@@ -369,7 +369,6 @@ export default function ChangeWorkspace({
+             <div className="account">
+               <span>
+                 <strong>{session.user.displayName}</strong>
+-                <small>{label(session.user.changeAccess)}</small>
+               </span>
+               <NotificationCenter
+                 csrfToken={session.csrfToken}
+diff --git a/ASTRA-Frontend-latest/src/pages/admin/admin-console.tsx b/ASTRA-Frontend-latest/src/pages/admin/admin-console.tsx
+index 32eed4b..a05dacb 100644
+--- a/ASTRA-Frontend-latest/src/pages/admin/admin-console.tsx
++++ b/ASTRA-Frontend-latest/src/pages/admin/admin-console.tsx
+@@ -331,9 +331,6 @@ export default function AdminConsole({
+             </span>
+             <div>
+               {session?.user.displayName ?? 'ASTRA'}
+-              <small>
+-                {inManagementWorkspace ? 'Management' : isAdministrator ? 'Administrator' : 'Category management'}
+-              </small>
+             </div>
+             {session ? (
+               <>
+diff --git a/ASTRA-Frontend-latest/src/pages/admin/admin-insights.tsx b/ASTRA-Frontend-latest/src/pages/admin/admin-insights.tsx
+index 9ec9e4b..7932859 100644
+--- a/ASTRA-Frontend-latest/src/pages/admin/admin-insights.tsx
++++ b/ASTRA-Frontend-latest/src/pages/admin/admin-insights.tsx
+@@ -298,7 +298,6 @@ export default function AdminInsights({
+             </span>
+             <div>
+               {session?.user.displayName ?? 'ASTRA'}
+-              <small>{label}</small>
+             </div>
+             {session ? (
+               <>

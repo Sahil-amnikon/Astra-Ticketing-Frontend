@@ -1,0 +1,17 @@
+.change-choice { position: relative; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.change-choice-label { font-size: 14px; font-weight: 600; color: var(--spark-muted,#61728d); }
+html.spark-ui .change-choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 44px; border: 1px solid var(--line,#dce5f2); border-radius: 10px; padding: 10px 16px; text-align: left; font-weight: 400; background: var(--spark-input-bg,#f7f9fd); color: var(--spark-text,#18244a); }
+.change-choice-trigger span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.change-choice-menu { position: absolute; top: calc(100% + 6px); inset-inline: 0; z-index: 70; display: grid; gap: 6px; max-height: 330px; overflow-y: auto; padding: 8px; border: 1px solid var(--line,#dce5f2); border-radius: 12px; background: var(--spark-surface,#fff); box-shadow: 0 12px 30px #14224920; }
+html.spark-ui .change-choice-option { display: flex; align-items: center; gap: 10px; min-height: 42px; padding: 8px; border-radius: 8px; cursor: pointer; }
+.change-choice-option:hover,.change-choice-option.is-selected { background: var(--spark-hover,#edf3ff); }
+.change-choice-option-text { display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.change-choice-option small { font-size: 12px; color: var(--spark-muted,#61728d); }
+html.spark-ui .change-choice-all { border: 0; border-radius: 8px; padding: 8px; background: var(--spark-soft,#edf3ff); color: var(--spark-text,#18244a); text-align: left; }
+/* Match Organization options: click anywhere on a row, with a check at the right. */
+html.spark-ui body .change-choice-menu { box-sizing: border-box; max-height: min(330px,60dvh); padding: 5px; gap: 5px; border-color: var(--spark-border,#dce5f2); background: var(--spark-surface,#f8faff); box-shadow: 0 10px 28px rgb(17 27 75 / 14%); overscroll-behavior: contain; scrollbar-width: thin; }
+.change-choice-options { display: grid; gap: 2px; min-width: 0; }
+html.spark-ui body .change-choice .change-choice-option { display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; width: 100%; min-height: 40px; height: auto; margin: 0; padding: 9px 10px; border: 0; border-radius: 7px; background: transparent; color: var(--spark-text,#111b4b); box-shadow: none; font: inherit; font-size: 14px; font-weight: 600; line-height: 1.5; text-align: left; text-transform: none; letter-spacing: normal; white-space: normal; cursor: pointer; transform: none; }
+html.spark-ui body .change-choice .change-choice-option:is(:hover,.is-selected) { background: var(--spark-hover,#edf3ff); transform: none; box-shadow: none; }
+html.spark-ui body .change-choice .change-choice-option:focus-visible { outline: 2px solid var(--spark-link,#2563eb); outline-offset: -2px; background: var(--spark-hover,#edf3ff); }
+.change-choice-check { flex: 0 0 16px; color: var(--spark-link,#2563eb); font-weight: 700; text-align: center; }

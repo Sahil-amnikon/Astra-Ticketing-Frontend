@@ -1,0 +1,338 @@
+.problem-module {
+  display: grid;
+  gap: 22px;
+}
+/* Rendered at the document root so page transforms cannot offset the modal. */
+html body .problem-module.problem-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  transform: none;
+  animation: none;
+}
+html body .problem-dialog-backdrop > .problem-add-dialog {
+  flex: 0 1 980px;
+  min-height: 0;
+  max-height: calc(100dvh - 48px);
+  margin: 0;
+  transform: none;
+  animation: none;
+}
+@media (max-width: 760px) {
+  html body .problem-dialog-backdrop > .problem-add-dialog { max-height: calc(100dvh - 20px); }
+}
+.problem-module .panel {
+  padding: 24px;
+}
+.problem-heading,
+.problem-detail-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.problem-heading h2 {
+  font-size: 24px;
+  margin: 8px 0;
+}
+.problem-heading p {
+  max-width: 760px;
+  color: #526477;
+}
+.problem-eyebrow {
+  color: #526477;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.problem-form {
+  display: grid;
+  gap: 16px;
+}
+.problem-form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.problem-form label,
+.problem-filters label,
+.problem-support label {
+  display: grid;
+  gap: 7px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.problem-fields,
+.problem-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.problem-filters {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+.problem-module input,
+.problem-module select,
+.problem-module textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #ccd5e0;
+  border-radius: 7px;
+  font: inherit;
+  color: #22354a;
+  background: #fff;
+}
+.problem-module textarea {
+  resize: vertical;
+}
+.problem-module p {
+  line-height: 1.6;
+}
+.problem-table {
+  overflow-x: auto;
+}
+.problem-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.problem-table th {
+  text-align: left;
+  color: #526477;
+  font-size: 12px;
+  padding: 12px;
+  background: #f6f8fb;
+}
+.problem-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5eaf0;
+  font-size: 13px;
+}
+.problem-table tr.selected {
+  background: #eff6ff;
+}
+.problem-record {
+  display: grid;
+  gap: 5px;
+  background: transparent;
+  color: #2459a4;
+  text-align: left;
+  padding: 0;
+  max-width: 350px;
+}
+.problem-record span {
+  color: #22354a;
+}
+.problem-status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #edf1f7;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.status-known_error {
+  background: #fff1d6;
+  color: #865c13;
+}
+.status-investigating {
+  background: #e7efff;
+  color: #2855a1;
+}
+.status-resolved,
+.status-closed {
+  background: #e1f4eb;
+  color: #226146;
+}
+.problem-paging {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+.problem-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr);
+  gap: 22px;
+}
+.problem-support {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+  min-width: 0;
+}
+.problem-linked-ticket {
+  display: grid;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5eaf0;
+  overflow-wrap: anywhere;
+}
+.problem-support form {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+.problem-timeline {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+.problem-timeline li {
+  border-left: 3px solid #d4e0f2;
+  padding-left: 14px;
+  overflow-wrap: anywhere;
+}
+.problem-timeline small {
+  display: block;
+  margin-top: 5px;
+  color: #526477;
+}
+.problem-timeline p {
+  white-space: pre-wrap;
+}
+.problem-module button:focus-visible {
+  outline: 3px solid #76aaf2;
+  outline-offset: 3px;
+}
+@media (max-width: 1000px) {
+  .problem-detail {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .problem-heading,
+  .problem-detail-heading {
+    flex-direction: column;
+  }
+  .problem-fields,
+  .problem-filters {
+    grid-template-columns: 1fr;
+  }
+  .problem-module .panel {
+    padding: 16px;
+  }
+  .problem-paging {
+    justify-content: flex-start;
+  }
+  .problem-heading h2 {
+    font-size: 21px;
+  }
+}
+
+.problem-module button:not(.secondary):not(.problem-record) {
+  background: var(--spark-primary, #2563eb);
+  color: #fff;
+  padding: 10px 16px;
+  border: 1px solid var(--spark-primary, #2563eb);
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+.problem-module button:not(.secondary):not(.problem-record):hover:not(:disabled) {
+  background: var(--spark-secondary, #1e40af);
+  border-color: var(--spark-secondary, #1e40af);
+  color: #fff;
+}
+.problem-module button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.problem-module .panel {
+  min-width: 0;
+}
+/* Problem results: clear separation, rounded headers and readable dark text. */
+html.spark-ui body .problem-module .problem-filters + p {
+  margin: 16px 0 12px;
+  color: var(--spark-muted);
+}
+html.spark-ui body .problem-module .problem-table table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+html.spark-ui body .problem-module .problem-table :is(thead, thead tr) {
+  background: transparent;
+}
+html.spark-ui body .problem-module .problem-table th:first-child {
+  border-radius: 12px 0 0 12px;
+}
+html.spark-ui body .problem-module .problem-table th:last-child {
+  border-radius: 0 12px 12px 0;
+}
+html.spark-ui[data-theme='dark'] body .problem-module .problem-record {
+  background: transparent;
+  box-shadow: none;
+  color: var(--spark-link);
+}
+html.spark-ui[data-theme='dark'] body .problem-module .problem-record strong {
+  color: var(--spark-link);
+}
+html.spark-ui[data-theme='dark'] body .problem-module .problem-record span {
+  color: var(--spark-text);
+}
+html.spark-ui[data-theme='dark'] body .problem-module .problem-status {
+  background: var(--spark-primary-soft);
+  color: var(--spark-link);
+}
+html.spark-ui[data-theme='dark'] body .problem-module .problem-status.status-known_error {
+  background: var(--spark-warning-soft);
+  color: var(--spark-warning-text);
+}
+html.spark-ui[data-theme='dark'] body .problem-module .problem-status:is(.status-resolved, .status-closed) {
+  background: var(--spark-success-soft);
+  color: var(--spark-success-text);
+}
+/* A problem reference is a table action, not a nested card. */
+html.spark-ui body .problem-module .problem-table .problem-record,
+html.spark-ui body .problem-module .problem-table .problem-record:hover {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  color: var(--spark-link);
+  transform: none;
+}
+html.spark-ui body .problem-module .problem-table .problem-record strong {
+  color: var(--spark-link);
+}
+html.spark-ui body .problem-module .problem-table .problem-record span {
+  color: var(--spark-text);
+}
+html.spark-ui body .problem-module .problem-table .problem-record:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Problem header actions */
+.admin-shell .problem-page-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}.problem-heading-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}.problem-form>.problem-detail-heading{align-items:center;width:100%}.problem-form>.problem-detail-heading>button{margin-left:auto}.problem-form details>summary{cursor:pointer;font-weight:600;padding:12px 0}@media(max-width:760px){.admin-shell .problem-page-heading{flex-direction:column;align-items:flex-start}}
+
+/* Related tickets and solution chart */
+.problem-ticket-picker{display:grid;gap:14px;padding:18px;border:1px solid var(--border,#dce4f3);border-radius:14px}.problem-ticket-picker h3,.problem-ticket-picker p{margin:0}.problem-ticket-results{display:grid;gap:8px;max-height:360px;overflow:auto}.problem-module .problem-ticket-option{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--border,#dce4f3);border-radius:10px;padding:12px;cursor:pointer}.problem-module .problem-ticket-option>input{width:18px;height:18px;min-width:18px;padding:0;margin-top:3px;flex-shrink:0}.problem-ticket-option>span{display:grid;gap:4px;overflow-wrap:anywhere}.problem-ticket-option span span,.problem-ticket-option small{font-weight:400}.problem-ticket-selected{display:grid;gap:8px}.problem-ticket-selected>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px;background:var(--surface-muted,#eff4ff);border-radius:10px}.problem-ticket-selected span{overflow-wrap:anywhere}.problem-ticket-selected button{flex-shrink:0}.problem-solution-chart{grid-column:1/-1;scroll-margin-top:85px;min-width:0}.problem-solution-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:0;list-style:none}.problem-solution-stages>li{padding:18px;border:1px solid var(--border,#dce4f3);border-radius:14px;min-width:0;overflow-wrap:anywhere}.problem-solution-stages>li.pending{border-style:dashed}.problem-stage-number{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#edf3ff;color:#245df1;font-weight:700}.problem-solution-stages h3{margin:12px 0 6px}.problem-solution-stages small{color:var(--muted,#627694)}@media(max-width:1100px){.problem-solution-stages{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.problem-solution-stages{grid-template-columns:1fr}}
+
+/* Visible team-ticket actions */
+.problem-ticket-picker-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}.problem-module .problem-ticket-option{align-items:center;justify-content:space-between}.problem-module .problem-ticket-option>label{display:flex;align-items:flex-start;gap:12px;flex:1;min-width:0;cursor:pointer}.problem-module .problem-ticket-option>label>input{width:18px;min-width:18px;height:18px;padding:0;margin-top:3px}.problem-ticket-option>label>span{display:grid;gap:4px;overflow-wrap:anywhere}.problem-ticket-option>button{flex-shrink:0}.problem-team-tickets{display:grid;gap:16px}.problem-ticket-row-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;min-width:280px}.problem-ticket-row-actions button{white-space:nowrap}.problem-actions-column{text-align:right!important}.problem-register>summary{cursor:pointer;font-weight:700;padding:4px 0 18px}.problem-register[open]{display:grid;gap:18px}.problem-dialog-backdrop{position:fixed;inset:0;z-index:1500;background:#14244277;display:flex;align-items:center;justify-content:center;padding:24px}.problem-module .problem-add-dialog{width:min(100%,980px);max-height:90vh;overflow:auto;display:grid;gap:16px;box-sizing:border-box;margin:0}.problem-add-dialog label{display:grid;gap:8px}.problem-dialog-actions{display:flex;justify-content:flex-end;gap:12px}.problem-team-tickets td p{margin:6px 0}.problem-team-tickets td{vertical-align:top}#problem-create,#problem-editor{scroll-margin-top:85px}@media(max-width:760px){.problem-ticket-picker-actions{justify-content:flex-start}.problem-module .problem-ticket-option{flex-wrap:wrap}.problem-ticket-row-actions{min-width:220px}.problem-dialog-backdrop{padding:10px}}
+
+/* Problem-first search and detail actions */
+.problem-search{display:grid;gap:18px;min-width:0}.problem-search h2{margin:0 0 6px}.problem-search>div>p{margin:0}.problem-solution-chart .problem-detail-heading>.problem-ticket-row-actions{margin-left:auto;flex-shrink:0}@media(max-width:760px){.problem-solution-chart .problem-detail-heading{flex-wrap:wrap}.problem-solution-chart .problem-detail-heading>.problem-ticket-row-actions{margin-left:0;justify-content:flex-start}}
+
+/* A single attachment action on problem results; details open on their own page. */
+.problem-list-ticket-action{display:flex;justify-content:flex-end}.problem-search .problem-record{text-decoration:none}.problem-search .problem-record:focus-visible{outline:2px solid var(--spark-primary,#245df1);outline-offset:4px}
+
+/* Blue ticket references in affected-ticket lists and search results. */
+html.spark-ui body .problem-linked-ticket .problem-ticket-number{color:var(--spark-primary,#2563eb);font-weight:600}
+html.spark-ui[data-theme='dark'] body .problem-linked-ticket .problem-ticket-number{color:var(--spark-link,#90b4ff)}

@@ -1,39 +1,28 @@
-# Amnikon Ticketing System — Phase 2
+# ASTRA frontend
 
-Latest LAB candidate: [Phase 2 v38 release guidance](docs/phase2-v38.md).
+Current ASTRA interface: React 19, TypeScript, React Router and Vite. This source replaces the earlier Next.js project on this repository's main branch; previous versions remain in Git history.
 
-Internal MSP service desk. This repository extends the LAB-validated v9 identity
-and administration baseline with the **Phase 2 ticket engine** and focused
-Technician, Management and Administration workspaces. It supports controlled ticket intake, assignment,
-transfer, work notes, requester-visible replies, approvals, attachments,
-priority SLA targets, individual technician reports and operational dashboards.
-It is a LAB-validation candidate, not a production release. See
-`docs/validation.md` for exact evidence and remaining gates.
+## Development
 
-## Structure
+Use Node.js 24 and npm:
 
-| Directory                      | Responsibility                                                 |
-| ------------------------------ | -------------------------------------------------------------- |
-| `apps/web`                     | Next.js role-based workspaces, API gateway, React and Tailwind |
-| `apps/api`                     | NestJS API, Entra sessions, RBAC, core data and ticket engine  |
-| `packages/database/migrations` | Knex PostgreSQL migrations                                     |
-| `infra`                        | Separate WEB and DB Compose deployments and image builds       |
-| `scripts`                      | Migration, seed and LAB acceptance commands                    |
-| `tests/e2e`                    | Playwright identity-closure and responsive checks              |
-| `docs`                         | Architecture, deployment, security and operational guidance    |
+```sh
+npm ci
+npm run dev
+```
 
-## Start here
+The development server listens on `127.0.0.1:3200` and forwards `/api` to `http://127.0.0.1:5200`. Set `API_INTERNAL_URL` in local environment configuration when needed. Keep credentials out of the frontend and repository.
 
-For the Phase 2 v14 → v15 Management dashboard correction, read `docs/phase2-v15.md` first. It includes
-the migration requirement, workflow scope, upgrade precautions and rollback.
-`docs/roadmap.md` records what remains deliberately deferred.
+```sh
+npm run build
+```
 
-1. Read `docs/deployment.md` and configure the two LAB hosts.
-2. Provide the approved internal HTTPS URL and Entra app registration.
-3. Apply migration 007 from WEB, then rebuild/start the services.
-4. Complete ticket, SLA, reporting, authorization and attachment checks in `docs/testing.md`.
+The build checks TypeScript and generates `dist/`. Host the generated files behind the existing HTTPS reverse proxy with SPA fallback and `/api` routed to the backend.
 
-Node 24 is needed only for development/CI. LAB hosts run Docker services; host npm
-installation is unnecessary. Dependencies are locked in `package-lock.json`.
-No hard-coded LAB address, identity-provider credential or real user exists.
-There is no local password, mock login or authentication bypass.
+## Backend and maintenance
+
+The matching backend is [Astra-Ticketing-Backend](https://github.com/Sahil-amnikon/Astra-Ticketing-Backend), using ASP.NET Core 10 and MySQL. The application includes scoped workspaces, ticketing, change/problem management, article reviews, inline article images and service catalogue features.
+
+Deployment helpers live in the backend repository's `local-maintenance/` folder. These helpers expect sibling folders named `ASTRA-Frontend-latest` and `ASTRA-Backend-latest` in their existing environment. Review a helper's scope before running it; scripts may target the configured production VM.
+
+Publishing source to GitHub does not deploy the application. Build validation does not replace live authentication, database, mail or browser checks.

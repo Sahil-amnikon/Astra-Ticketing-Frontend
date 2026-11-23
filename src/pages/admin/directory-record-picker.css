@@ -1,0 +1,43 @@
+.directory-picker { position: relative; min-width: 0; display: grid; gap: 8px; }
+.directory-picker .directory-picker-trigger {
+  width: 100%; min-height: 44px; display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; padding: 10px 38px 10px 14px; border: 1px solid var(--spark-border, #dce5f2); border-radius: var(--spark-control-radius, 10px);
+  background: var(--spark-surface, #f7f9fe); color: var(--spark-text, #142249); font: inherit; text-align: left; cursor: pointer;
+}
+.directory-picker .directory-picker-trigger {
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='m5 7.5 5 5 5-5' stroke='%23142149' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.directory-picker-trigger > span[aria-hidden] { display: none; }
+html[data-theme='dark'] .directory-picker .directory-picker-trigger {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='m5 7.5 5 5 5-5' stroke='%23e5edf9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.directory-picker-trigger > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.directory-picker-trigger:focus-visible { outline: 2px solid #3264ef; outline-offset: 2px; }
+.directory-picker-trigger:disabled { opacity: .6; cursor: default; }
+.directory-picker select.directory-picker-validation {
+  position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important;
+  margin: 0 !important; opacity: 0; pointer-events: none; bottom: 0; clip-path: inset(50%);
+}
+.directory-picker-popup {
+  position: fixed; z-index: 10050; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px;
+  padding: 8px; border: 1px solid var(--line, #dce5f2); border-radius: 12px;
+  background: var(--spark-surface, #f8faff); color: var(--spark-text, #142249); box-shadow: 0 12px 32px #14224926;
+  font-size: 14px; overflow: hidden;
+}
+.directory-picker-popup .directory-picker-search {
+  box-sizing: border-box; width: 100%; min-height: 40px; flex-shrink: 0; padding: 9px 12px;
+  border: 1px solid var(--line, #dce5f2); border-radius: 8px; background: var(--surface, white); color: inherit; font: inherit;
+}
+.directory-picker-options { overflow-y: auto; min-height: 0; overscroll-behavior: contain; }
+.directory-picker-option { position: relative; padding: 11px 30px 11px 12px; border-radius: 8px; cursor: pointer; line-height: 1.4; overflow-wrap: anywhere; }
+.directory-picker-option > span:first-child { font-weight: 600; }
+.directory-picker-option small { display: block; color: var(--muted, #7185a6); font-size: 12px; margin-top: 3px; }
+.directory-picker-option.is-active, .directory-picker-option[aria-selected=true] { background: var(--spark-hover, #eaf1fc); }
+.directory-picker-tick { position: absolute; right: 10px; top: 12px; color: #3264ef; }
+.directory-picker-options p { padding: 10px 12px; margin: 0; color: var(--muted, #7185a6); }
+.directory-picker-pager { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line, #dce5f2); padding-top: 6px; flex-shrink: 0; }
+.directory-picker-popup button { padding: 7px 10px; border: 1px solid var(--line, #dce5f2); border-radius: 7px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.directory-picker-popup button:disabled { opacity: .45; cursor: default; }

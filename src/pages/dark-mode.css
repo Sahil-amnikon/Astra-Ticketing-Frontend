@@ -1,0 +1,429 @@
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --spark-page: #0d1422;
+  --spark-surface: #121d2e;
+  --spark-surface-raised: #19263a;
+  --spark-border: #2a3a50;
+  --spark-text: #f2f5fb;
+  --spark-muted: #a8b6cb;
+  --spark-table-head: #18263a;
+  --spark-hover: #1d2c43;
+  --spark-link: #93b8ff;
+  --spark-primary-soft: #1d3153;
+  --spark-success-soft: #163b32;
+  --spark-success-text: #8cddba;
+  --spark-warning-soft: #3c301c;
+  --spark-warning-text: #f4cd80;
+  --spark-danger-soft: #3d2330;
+  --spark-danger-text: #ffb1bd;
+  --spark-violet-soft: #30294a;
+  --spark-violet-text: #ccbaff;
+  --surface: #172235;
+  --surface-muted: #1c2a40;
+  --blue: #8aaeff;
+  --blue-dark: #4779ed;
+  --blue-soft: #233854;
+  --ink: #e5edf9;
+  --muted: #a6b6ce;
+  --line: #334259;
+  --nav: #172235;
+  --shadow-sm: 0 8px 28px #0002;
+}
+html[data-theme='dark'] body,
+html[data-theme='dark'] .admin-shell .workspace,
+html[data-theme='dark'] .corporate-workspace,
+html[data-theme='dark'] .portal-shell {
+  background: #101a2b;
+  color: var(--ink);
+}
+html[data-theme='dark']
+  :is(
+    .admin-shell .sidebar,
+    .admin-shell .topbar,
+    .admin-shell .panel,
+    .admin-shell .editor,
+    .admin-shell .page-heading,
+    .admin-shell .stat,
+    .admin-shell.ticket-shell .panel,
+    .help-panel,
+    .help-response,
+    .notification-panel,
+    .notification-popover,
+    .modal,
+    .modal-card,
+    .dialog,
+    .chooser-card,
+    .portal-card,
+    .corporate-panel,
+    .corporate-metric,
+    .corporate-card,
+    .corporate-topbar,
+    .workspace-card,
+    .portal-form,
+    .change-card,
+    .ticket-card
+  ) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :is(
+    input,
+    select,
+    textarea,
+    button.secondary,
+    .secondary,
+    .picker select,
+    .admin-shell .secondary,
+    .admin-shell .record-tabs button,
+    .admin-shell .composer-tabs button
+  ) {
+  background: var(--surface-muted);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark'] :is(input, textarea)::placeholder {
+  color: #8fa2bf;
+}
+html[data-theme='dark']
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    strong,
+    label,
+    legend,
+    .label,
+    .admin-shell .sidebar .brand,
+    .corporate-heading h1,
+    .corporate-section-label h2,
+    .corporate-metric strong,
+    .corporate-ticket-title,
+    .corporate-ticket-title a,
+    .ticket-subject,
+    .record-summary,
+    .profile,
+    .summary-value
+  ) {
+  color: var(--ink);
+}
+html[data-theme='dark']
+  :is(
+    .hint,
+    .muted,
+    small,
+    .admin-shell .sidebar nav a,
+    .admin-shell .sidebar .brand small,
+    .admin-shell .sidebar .nav-label,
+    .admin-shell .workspace-nav-group-label,
+    .corporate-subtitle,
+    .corporate-ticket-meta,
+    .corporate-metric-label,
+    .admin-shell .page-heading p,
+    .admin-shell .topbar .breadcrumb
+  ) {
+  color: var(--muted);
+}
+html[data-theme='dark']
+  :is(
+    .admin-shell .sidebar nav a[aria-current='page'],
+    .admin-shell .sidebar nav a:hover,
+    .admin-shell .sidebar-bottom > a,
+    .setup-link,
+    .role-profile-grid label,
+    .role-profile-grid label.selected,
+    .notice,
+    .access-scope-heading,
+    .access-scope-note,
+    .record-summary,
+    .ticket-meta,
+    .summary-card,
+    .record-tabs,
+    .composer-tabs,
+    .help-question,
+    .knowledge-result,
+    .search-result,
+    .notification-item,
+    .notification-item.unread
+  ) {
+  background: var(--blue-soft);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :is(
+    th,
+    thead,
+    .admin-shell th,
+    .corporate-table th,
+    .toolbar,
+    .filter-bar,
+    .corporate-filters,
+    .conversation-head,
+    .ticket-thread,
+    .mail-preview,
+    .activity-item,
+    .timeline-item,
+    .change-summary,
+    .report-card,
+    .empty-state,
+    .verified,
+    .access-matrix .access-module,
+    .access-matrix .access-detail td
+  ) {
+  background: var(--surface-muted);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :is(
+    td,
+    tr,
+    .admin-shell td,
+    .corporate-table td,
+    .sidebar-bottom,
+    .section-heading,
+    .access-table-scroll,
+    .access-options > button[aria-pressed='true']
+  ) {
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :where(
+    a,
+    .admin-shell .eyebrow,
+    .admin-shell .sidebar nav a[aria-current='page'],
+    .access-matrix h2 em
+  ) {
+  color: var(--blue);
+}
+html[data-theme='dark']
+  :where(
+    .primary,
+    .admin-shell .primary,
+    .admin-shell .record-tabs button.active,
+    .admin-shell .composer-tabs button.active,
+    .access-tabs button[aria-selected='true']
+  ) {
+  background: #4263eb;
+  color: #fff;
+  border-color: #4263eb;
+}
+html[data-theme='dark'] .access-table .access-badge.enabled,
+html[data-theme='dark'] .status.ACTIVE {
+  background: #193d34;
+  color: #9ce0bd;
+}
+html[data-theme='dark'] .notice.error {
+  background: #442837;
+  color: #ffb4bd;
+  border-color: #855162;
+}
+html[data-theme='dark'] :is(.avatar, .access-avatar, .access-metric-icon) {
+  background: #233c60;
+  color: #9fc0ff;
+}
+html[data-theme='dark'] .access-metric-icon.tone-1 {
+  background: #1c3d36;
+  color: #8bd8bb;
+}
+html[data-theme='dark'] .access-metric-icon.tone-2 {
+  background: #342a51;
+  color: #c5a8ff;
+}
+html[data-theme='dark'] .astra-logo {
+  filter: drop-shadow(0 0 1px #bbc9f5);
+}
+html[data-theme='dark']
+  :is(
+    .administration-hero,
+    .administration-metric,
+    .administration-area,
+    .administration-audit,
+    .administration-access-tip
+  ) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+html[data-theme='dark']
+  :is(
+    .administration-overview,
+    .administration-audit strong,
+    .administration-metric > strong
+  ) {
+  color: var(--ink);
+}
+html[data-theme='dark']
+  :is(
+    .administration-hero span,
+    .administration-area > p,
+    .administration-audit span,
+    .administration-audit time,
+    .administration-access-tip p,
+    .administration-metric-label
+  ) {
+  color: var(--muted);
+}
+html[data-theme='dark']
+  :is(.administration-area a:hover, .administration-area-icon) {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+/* Complete dark surfaces for shared and feature-specific components. */
+html.spark-ui[data-theme='dark'] body {
+  --border: var(--spark-border);
+  --accent: var(--spark-link);
+}
+html.spark-ui[data-theme='dark'] body :is(.metric-card, .ticket-stat,
+  .service-stat, .access-metric, .report-card, .summary-card, .chooser-card,
+  .support-card, .support-header, .portal-form, .login-card, .auth-card,
+  .groups-type-cards > div, .group-editor, .group-record, .problem-record,
+  .board-card, .board-column, .knowledge-result, .search-result,
+  .role-profile-grid label, .pending-attachment, .attachment,
+  .inline-contact-editor, .selected-stakeholders, .work-item,
+  .change-hero > div:last-child, .calendar-change) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  box-shadow: none;
+}
+html.spark-ui[data-theme='dark'] body .astra-workspace-picker .astra-picker-card {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body :is(.metric-card, .service-stat,
+  .access-metric, .report-card) :is(strong, h2, h3, .summary-value) {
+  color: var(--spark-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.metric-card > span,
+  .metric-card > small, .metric-card > p, .service-stat > span,
+  .stat div > span, .calendar-change span, .calendar-change small,
+  .change-hero p, .detail-list p, .problem-heading p, .problem-eyebrow,
+  .preview-description, .ticket-meta small, .record-summary small,
+  .support-note, .support-card p, .mail-preview small) {
+  color: var(--spark-muted);
+}
+html.spark-ui[data-theme='dark'] body :is(.support-note, .results-heading,
+  .health-metrics > div, .record-summary, .ticket-meta, .layout-switch,
+  .mail-preview, .ticket-thread, .activity-item, .notification-item,
+  .notification-item.unread, .change-summary, .empty-state,
+  .advanced-filters, .access-scope-note, .access-scope-heading) {
+  background: var(--spark-surface);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body :is(.admin-shell, .portal-shell,
+  .support-portal, .astra-workspace-picker) :is(input, select, textarea) {
+  background: var(--spark-surface);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body :is(input, textarea)::placeholder {
+  color: #9aaec9;
+  opacity: 1;
+}
+html.spark-ui[data-theme='dark'] body :is(.requester-results, .picker-results,
+  .directory-results, .tag-select-dropdown, .glance-picker-panel,
+  .requester-inline,
+  .notification-popover, .help-panel) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body .timeline-item.internal > div {
+  background: var(--spark-warning-soft);
+  color: var(--spark-text);
+  border-color: var(--spark-warning-text);
+}
+html.spark-ui[data-theme='dark'] body .timeline-item.public > div {
+  background: var(--spark-primary-soft);
+  color: var(--spark-text);
+  border-color: var(--spark-link);
+}
+html.spark-ui[data-theme='dark'] body :is(.pill, .v38-chip, .technology-tag,
+  .status-badge, .ticket-badge, .status, .sla-pill) {
+  background: var(--spark-primary-soft);
+  color: var(--spark-link);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body :is(.priority-low, .status.ACTIVE,
+  .status-resolved, .sla-on_track, .sla-met, .technology-tag) {
+  background: var(--spark-success-soft);
+  color: var(--spark-success-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.priority-medium,
+  .status-known_error, .status-waiting_for_client, .status-waiting_for_vendor,
+  .status-on_hold, .sla-at_risk) {
+  background: var(--spark-warning-soft);
+  color: var(--spark-warning-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.priority-high, .priority-critical,
+  .sla-breached, .status-cancelled) {
+  background: var(--spark-danger-soft);
+  color: var(--spark-danger-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.status-closed, .sla-paused,
+  .sla-not_tracked) {
+  background: var(--spark-surface);
+  color: var(--spark-muted);
+}
+html.spark-ui[data-theme='dark'] body .ticket-badge[class*='priority-'] {
+  background: transparent;
+}
+html.spark-ui[data-theme='dark'] body :is(.priority-p1_critical, .priority-p2_high) {
+  color: var(--spark-danger-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.priority-p3_medium) {
+  color: var(--spark-warning-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.priority-p4_low) {
+  color: var(--spark-muted);
+}
+html.spark-ui[data-theme='dark'] body :is(.calendar-change, .board-card,
+  .knowledge-result, .search-result, .notification-item):hover {
+  background: var(--spark-hover);
+}
+html.spark-ui[data-theme='dark'] body :is(.directory-results,
+  .requester-results) button {
+  background: transparent;
+  color: var(--spark-text);
+}
+html.spark-ui[data-theme='dark'] body :is(.directory-results,
+  .requester-results) button:hover {
+  background: var(--spark-hover);
+}
+html.spark-ui[data-theme='dark'] body :is(.tag-select-dropdown > summary,
+  .glance-options > label, .technology-tag-options > label) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body :is(.glance-options > label,
+  .technology-tag-options > label):hover {
+  background: var(--spark-hover);
+}
+html.spark-ui[data-theme='dark'] body :is(.link-button, .text-button) {
+  color: var(--spark-link);
+}
+/* Dark inline forms and expandable headings. */
+html.spark-ui[data-theme='dark'] body .inline-form {
+  background: var(--spark-surface);
+  color: var(--spark-text);
+  border: 1px solid var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body .expandable-panel > summary,
+html.spark-ui[data-theme='dark'] body .expandable-panel > summary .expandable-title {
+  color: var(--spark-text);
+}
+html.spark-ui[data-theme='dark'] body .expandable-panel > summary:hover {
+  background: var(--spark-hover);
+}
+html.spark-ui[data-theme='dark'] body .expandable-panel .expandable-chevron {
+  color: var(--spark-muted);
+  border-color: currentColor;
+}

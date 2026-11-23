@@ -1,0 +1,636 @@
+/* SPARK UI for ASTRA: deliberate shared presentation, independent of API/state. */
+html.spark-ui:not([data-theme='dark']) {
+  color-scheme: light;
+  --spark-page: #f4f7fc;
+  --spark-surface: #f8faff;
+  --spark-surface-raised: #fff;
+  --spark-border: #e2e9f2;
+  --spark-text: #111b4b;
+  --spark-muted: #5b77a1;
+  --spark-table-head: #f1f5fc;
+  --spark-hover: #edf3ff;
+  --spark-link: #2563eb;
+  --spark-primary-soft: #edf3ff;
+  --spark-success-soft: #e9f7f0;
+  --spark-success-text: #18744c;
+  --spark-warning-soft: #fff5df;
+  --spark-warning-text: #8d590c;
+  --spark-danger-soft: #fff0f2;
+  --spark-danger-text: #b42b49;
+  --spark-violet-soft: #f2edff;
+  --spark-violet-text: #7250bd;
+}
+
+html.spark-ui {
+  --spark-primary: #2563eb;
+  --spark-secondary: #1e40af;
+  --spark-radius: 12px;
+  --spark-control-radius: 10px;
+  --spark-card-radius: 16px;
+  --blue: var(--spark-link);
+  --blue-dark: var(--spark-secondary);
+  --blue-soft: var(--spark-primary-soft);
+  --ink: var(--spark-text);
+  --muted: var(--spark-muted);
+  --line: var(--spark-border);
+  --surface: var(--spark-surface-raised);
+  --surface-solid: var(--spark-surface-raised);
+  --surface-muted: var(--spark-surface);
+  --nav: var(--spark-surface-raised);
+  --shadow-sm: 0 2px 10px rgb(17 27 75 / 3%);
+  --shadow-md: 0 10px 30px rgb(17 27 75 / 7%);
+  background: var(--spark-page);
+  accent-color: var(--spark-primary);
+  scrollbar-color: var(--spark-border) transparent;
+}
+
+html.spark-ui body {
+  margin: 0;
+  background: var(--spark-page);
+  color: var(--spark-text);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  font-optical-sizing: auto;
+}
+
+html.spark-ui body :is(button, input, select, textarea, table) {
+  font-family: inherit;
+}
+html.spark-ui body main h1 {
+  color: var(--spark-text);
+  font-size: 30px !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+html.spark-ui body main h2 {
+  color: var(--spark-text);
+  font-size: 20px !important;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  font-weight: 650;
+}
+html.spark-ui body main h3 {
+  color: var(--spark-text);
+  font-size: 16px !important;
+  line-height: 1.5;
+  font-weight: 600;
+}
+html.spark-ui body main p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+html.spark-ui body :is(.hint, .muted, .breadcrumb, .profile small) {
+  color: var(--spark-muted);
+}
+html.spark-ui body :is(.eyebrow, .service-kicker, .groups-kicker, .support-eyebrow) {
+  color: var(--spark-link);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  font-weight: 650;
+}
+
+/* Existing page shells and navigation keep their routing and mobile behavior. */
+html.spark-ui body :is(.admin-shell, .workspace, .corporate-workspace, .portal-shell, .support-portal, .astra-workspace-picker) {
+  background: var(--spark-page);
+  color: var(--spark-text);
+}
+html.spark-ui body .admin-shell :is(.sidebar, .topbar) {
+  background: var(--spark-surface-raised);
+  border-color: var(--spark-border);
+  box-shadow: none;
+}
+html.spark-ui body .admin-shell .sidebar .brand {
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui body .admin-shell :is(.brand small, .nav-label, .workspace-nav-group-label) {
+  color: var(--spark-muted);
+}
+html.spark-ui body .admin-shell .sidebar nav a {
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: var(--spark-control-radius);
+  color: var(--spark-muted);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+html.spark-ui body .admin-shell .sidebar nav a:hover {
+  background: var(--spark-hover);
+  color: var(--spark-link);
+}
+html.spark-ui body .admin-shell .sidebar nav a[aria-current='page'] {
+  background: var(--spark-primary-soft);
+  color: var(--spark-link);
+  font-weight: 650;
+  box-shadow: inset 3px 0 var(--spark-primary);
+}
+html.spark-ui body .admin-shell .sidebar-bottom {
+  border-color: var(--spark-border);
+}
+html.spark-ui body .admin-shell .sidebar-bottom > a {
+  background: var(--spark-surface);
+  color: var(--spark-muted);
+  border-color: var(--spark-border);
+}
+html.spark-ui body .admin-shell .topbar {
+  min-height: 72px;
+  height: 72px;
+}
+html.spark-ui body .topbar .breadcrumb {
+  color: var(--spark-text);
+  font-size: 14px;
+  font-weight: 550;
+}
+html.spark-ui body :is(.avatar, .access-avatar) {
+  background: var(--spark-primary-soft);
+  color: var(--spark-link);
+  border-radius: 12px;
+}
+
+/* A consistent surface hierarchy across the existing feature page patterns. */
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal, .astra-workspace-picker)
+  :is(.panel, .editor, .stat, .ticket-stat, .corporate-panel, .corporate-card,
+  .corporate-metric, .administration-metric, .access-metric, .service-stat,
+  .workspace-card, .portal-card, .change-card, .ticket-card, .astra-picker-card,
+  .groups-type-cards > div, .group-editor, .group-record, .problem-record) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  border-radius: var(--spark-card-radius);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: none;
+}
+html.spark-ui body :is(.page-heading, .administration-hero, .groups-intro, .service-hero, .astra-picker-welcome) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border: 1px solid var(--spark-border);
+  border-radius: var(--spark-card-radius);
+  box-shadow: none;
+}
+html.spark-ui body :is(.administration-hero, .groups-intro, .astra-picker-welcome) {
+  padding: 28px 32px;
+}
+html.spark-ui body :is(.administration-hero p, .groups-kicker) {
+  color: var(--spark-link);
+}
+html.spark-ui body :is(.administration-hero > svg, .administration-metric-label svg) {
+  color: var(--spark-link);
+}
+html.spark-ui body :is(.administration-overview, .groups-workspace, .service-administration,
+  .corporate-heading, .corporate-section-label, .access-workspace) {
+  color: var(--spark-text);
+}
+html.spark-ui body :is(.administration-hero span, .administration-area > p, .administration-audit span,
+  .administration-audit time, .administration-metric-label, .administration-metric small,
+  .groups-intro p, .groups-type-cards p, .corporate-metric small, .corporate-subtitle,
+  .astra-picker-card-detail, .astra-picker-welcome-copy > p) {
+  color: var(--spark-muted);
+}
+html.spark-ui body :is(.corporate-metric strong, .administration-metric > strong, .access-metric strong,
+  .service-stat strong, .ticket-stat strong) {
+  color: var(--spark-text);
+  font-variant-numeric: tabular-nums;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+html.spark-ui body :is(.administration-area a, .astra-picker-card) {
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+html.spark-ui body :is(.administration-area a, .astra-picker-card):hover {
+  background: var(--spark-hover);
+  border-color: var(--spark-link);
+}
+html.spark-ui body :is(.administration-area-icon, .astra-picker-card-icon, .astra-picker-roles span) {
+  background: var(--spark-primary-soft);
+  color: var(--spark-link);
+  border-color: var(--spark-border);
+}
+html.spark-ui body .administration-access-tip {
+  background: var(--spark-primary-soft);
+  color: var(--spark-text);
+  border: 1px solid var(--spark-border);
+  border-radius: var(--spark-card-radius);
+}
+html.spark-ui body .administration-access-tip p {
+  color: var(--spark-muted);
+}
+
+/* Semantic accents survive both themes. */
+html.spark-ui body .corporate-metric-icon.blue {
+  background: var(--spark-primary-soft);
+  color: var(--spark-link);
+}
+html.spark-ui body .corporate-metric-icon.teal {
+  background: var(--spark-success-soft);
+  color: var(--spark-success-text);
+}
+html.spark-ui body .corporate-metric-icon.amber {
+  background: var(--spark-warning-soft);
+  color: var(--spark-warning-text);
+}
+html.spark-ui body .corporate-metric-icon.red {
+  background: var(--spark-danger-soft);
+  color: var(--spark-danger-text);
+}
+html.spark-ui body .corporate-metric:nth-child(5) .corporate-metric-icon {
+  background: var(--spark-violet-soft);
+  color: var(--spark-violet-text);
+}
+
+/* Controls: the actual input receives its fill, never an outline fieldset. */
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal, .astra-workspace-picker, .astra-login)
+  :is(input:not([type='checkbox']):not([type='radio']):not([type='hidden']):not([type='range']):not([type='color']), select, textarea) {
+  background: var(--spark-surface);
+  color: var(--spark-text);
+  border: 1px solid var(--spark-border);
+  border-radius: var(--spark-control-radius);
+  box-shadow: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal) :is(input, textarea)::placeholder {
+  color: var(--spark-muted);
+  opacity: 0.85;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal)
+  :is(input:not([type='checkbox']):not([type='radio']), select, textarea):hover:not(:disabled) {
+  border-color: var(--spark-muted);
+}
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal)
+  :is(input, select, textarea):focus {
+  border-color: var(--spark-primary);
+  outline: 2px solid var(--spark-primary-soft);
+  outline-offset: 1px;
+  box-shadow: none;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal) fieldset {
+  border-color: var(--spark-border);
+}
+html.spark-ui body :is(.toolbar, .filter-bar, .queue-toolbar, .groups-toolbar, .service-filters, .access-filters) {
+  color: var(--spark-text);
+  gap: 12px;
+}
+html.spark-ui body :is(.primary, .secondary, .danger-button, .theme-control, .support-submit) {
+  border-radius: var(--spark-control-radius);
+  font-weight: 550;
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+html.spark-ui body :is(.primary, .support-submit) {
+  background: var(--spark-primary);
+  color: #fff;
+  border-color: var(--spark-primary);
+  box-shadow: none;
+}
+html.spark-ui body :is(.primary, .support-submit):hover:not(:disabled) {
+  background: var(--spark-secondary);
+  border-color: var(--spark-secondary);
+  color: #fff;
+  box-shadow: 0 3px 10px rgb(37 99 235 / 15%);
+}
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal) .primary {
+  background: var(--spark-primary);
+  color: #fff;
+  border-color: var(--spark-primary);
+}
+html.spark-ui body :is(.admin-shell, .portal-shell, .support-portal) .primary:hover:not(:disabled) {
+  background: var(--spark-secondary);
+  color: #fff;
+}
+html.spark-ui body :is(.secondary, .theme-control) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border: 1px solid var(--spark-border);
+  box-shadow: none;
+}
+html.spark-ui body :is(.secondary, .theme-control):hover:not(:disabled) {
+  background: var(--spark-hover);
+  border-color: var(--spark-link);
+}
+html.spark-ui body .danger-button {
+  background: var(--spark-danger-soft);
+  color: var(--spark-danger-text);
+  border-color: var(--spark-danger-text);
+}
+html.spark-ui body :is(.primary, .secondary, .danger-button, .astra-sign-in):disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+html.spark-ui body :is(.record-tabs, .composer-tabs, .access-tabs) {
+  background: var(--spark-surface);
+  border-color: var(--spark-border);
+}
+html.spark-ui body :is(.record-tabs, .composer-tabs, .access-tabs) button {
+  background: transparent;
+  color: var(--spark-muted);
+  border-color: transparent;
+  border-radius: 10px;
+  box-shadow: none;
+}
+html.spark-ui body :is(.record-tabs, .composer-tabs, .access-tabs)
+  :is(button.active, button[aria-selected='true']) {
+  background: var(--spark-primary);
+  color: #fff;
+}
+
+/* Table roots include empty/loading/error rows and preserve horizontal scroll. */
+html.spark-ui body :is(.admin-shell, .portal-shell) table {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  border-collapse: collapse;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table th {
+  background: var(--spark-table-head);
+  color: var(--spark-muted);
+  border-color: var(--spark-border);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table td {
+  color: var(--spark-text);
+  background: transparent;
+  border-color: var(--spark-border);
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table tbody tr {
+  background: var(--spark-surface-raised);
+  transition: background-color 120ms ease;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table tbody tr:hover {
+  background: var(--spark-hover);
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table :is(td a, .ticket-subject a) {
+  color: var(--spark-link);
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table :is(small, .hint, .muted) {
+  color: var(--spark-muted);
+}
+html.spark-ui body .ticket-shell .queue-primary-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools .ticket-search-box {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools > select {
+  flex: 1 1 140px;
+  width: auto;
+  min-width: 0;
+}
+html.spark-ui body .ticket-shell .queue-primary-tools .layout-switch {
+  margin-left: auto;
+}
+html.spark-ui body .ticket-shell .ticket-table {
+  min-width: 1040px;
+}
+html.spark-ui body .ticket-shell .ticket-table :is(th, td):first-child {
+  min-width: 240px;
+}
+html.spark-ui body .ticket-shell .ticket-table :is(th, td):nth-child(2) {
+  min-width: 170px;
+}
+html.spark-ui body .ticket-shell .ticket-table :is(th, td):nth-child(3) {
+  min-width: 150px;
+}
+html.spark-ui body :is(.queue-summary article, .results-heading, .quick-preview, .queue-health,
+  .record-summary, .ticket-meta, .summary-card, .layout-switch) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui body :is(.administration-audit li, .group-record, .group-member,
+  .queue-secondary-tools, .saved-views, .advanced-filters, .ticket-form section + section) {
+  border-color: var(--spark-border);
+}
+html.spark-ui body .admin-shell :is(.new-ticket-attachments, .tag-select-dropdown,
+  .tag-select-dropdown summary, .pending-attachment, .requester-results, .requester-inline) {
+  background: var(--spark-surface);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  border-radius: var(--spark-control-radius);
+}
+html.spark-ui body .admin-shell .tag-select-dropdown summary:hover {
+  background: var(--spark-hover);
+}
+html.spark-ui body .admin-shell :is(.file-button, .tag-select-dropdown summary span:first-child) {
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui body .admin-shell :is(.new-ticket-attachments p, .field-help, .tag-selected-count) {
+  color: var(--spark-muted);
+}
+html.spark-ui body :is(.notice, .access-scope-note) {
+  background: var(--spark-primary-soft);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  border-radius: 12px;
+}
+html.spark-ui body .notice.error {
+  background: var(--spark-danger-soft);
+  color: var(--spark-danger-text);
+  border-color: var(--spark-danger-text);
+}
+
+/* Portalled UI has explicit feature roots, separate from input fieldsets. */
+html.spark-ui body :is(.modal, .modal-card, .dialog, .delete-dialog, .notification-panel,
+  .notification-popover, .help-panel) {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  border-radius: var(--spark-card-radius);
+  box-shadow: var(--shadow-md);
+}
+html.spark-ui body :is(.modal, .modal-card, .dialog, .delete-dialog)
+  :is(input:not([type='checkbox']):not([type='radio']), select, textarea) {
+  background: var(--spark-surface);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+  border-radius: var(--spark-control-radius);
+}
+
+/* Welcome and sign-in use the same type, controls and blue brand palette. */
+html.spark-ui body .astra-login {
+  background: var(--spark-surface-raised);
+  border: 1px solid var(--spark-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+}
+html.spark-ui body .astra-login-hero {
+  background: linear-gradient(145deg, #1e40af, #2563eb);
+}
+html.spark-ui body .astra-login-hero h2 {
+  color: #fff;
+  font-size: clamp(36px, 4vw, 56px);
+  letter-spacing: -0.045em;
+}
+html.spark-ui body .astra-login-hero :is(p, small) {
+  color: #e3edff;
+}
+html.spark-ui body .astra-login-main {
+  background: var(--spark-surface-raised);
+}
+html.spark-ui body .astra-login-card :is(p, small, .eyebrow),
+html.spark-ui body .astra-login-footer {
+  color: var(--spark-muted);
+}
+html.spark-ui body .astra-login-card .astra-sign-in {
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid var(--spark-primary);
+  border-radius: var(--spark-control-radius);
+  background: var(--spark-primary);
+  color: #fff;
+  box-shadow: none;
+  cursor: pointer;
+}
+html.spark-ui body .astra-login-card .astra-sign-in:hover:not(:disabled) {
+  background: var(--spark-secondary);
+  border-color: var(--spark-secondary);
+}
+html.spark-ui body .astra-login-divider {
+  color: var(--spark-muted);
+}
+html.spark-ui body .astra-login-divider::before,
+html.spark-ui body .astra-login-divider::after {
+  background: var(--spark-border);
+}
+html.spark-ui body .astra-workspace-picker > header {
+  background: var(--spark-surface-raised);
+  border-color: var(--spark-border);
+}
+html.spark-ui body .support-header {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui body .support-intro :is(p, li span) {
+  color: var(--spark-muted);
+}
+
+/* Hover feedback never moves a card into an adjacent filter or panel. */
+html.spark-ui body :is(.primary, .secondary, .panel, .stat, .ticket-stat, .corporate-metric,
+  .corporate-card, .administration-metric, .administration-area a, .access-metric,
+  .astra-picker-card, .workspace-card, .portal-card, .board-card, .problem-record):hover {
+  transform: none;
+}
+html.spark-ui body .admin-shell .sidebar nav a:hover {
+  transform: none;
+}
+html.spark-ui body .corporate-metrics > .corporate-metric {
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+html.spark-ui body .corporate-metrics > .corporate-metric:is(:hover, :focus-visible) {
+  background: var(--spark-hover);
+  border-color: var(--spark-link);
+  box-shadow: var(--shadow-md);
+}
+html.spark-ui body .corporate-metrics > .corporate-metric:is(:hover, :focus-visible) .corporate-metric-arrow {
+  color: var(--spark-link);
+}
+html.spark-ui body :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--spark-link);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1100px) {
+  html.spark-ui body .admin-shell .sidebar {
+    top: 72px;
+    height: calc(100dvh - 72px);
+  }
+}
+@media (max-width: 650px) {
+  html.spark-ui body main h1 { font-size: 26px !important; }
+  html.spark-ui body .workspace main { padding: 20px 16px 40px; }
+  html.spark-ui body :is(.page-heading, .administration-hero, .groups-intro, .astra-picker-welcome) {
+    padding: 22px;
+  }
+  html.spark-ui body .astra-login {
+    width: calc(100% - 24px);
+    margin: 12px;
+    min-height: calc(100svh - 24px);
+    border-radius: 16px;
+  }
+  html.spark-ui body .astra-login-main { padding: 44px 24px 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.spark-ui body *, html.spark-ui body *::before, html.spark-ui body *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Workspace chooser reference styling: scoped to the entry-page cards. */
+html.spark-ui body .astra-workspace-picker .astra-picker-grid > .astra-picker-card {
+  border-radius: 22px;
+  padding: 28px;
+  min-height: 292px;
+  box-shadow: 0 8px 28px rgb(24 45 80 / 4%);
+}
+html.spark-ui body .astra-workspace-picker .astra-picker-card .astra-picker-card-icon {
+  background: var(--workspace-accent);
+  color: #fff;
+  border-radius: 16px;
+  width: 58px;
+  height: 58px;
+}
+html.spark-ui body .astra-workspace-picker .astra-picker-card-admin {
+  --workspace-accent: #f09522;
+}
+html.spark-ui body .astra-workspace-picker .astra-picker-grid > .astra-picker-card:hover,
+html.spark-ui body .astra-workspace-picker .astra-picker-grid > .astra-picker-card:focus-visible {
+  background: var(--spark-surface-raised);
+  border-color: var(--workspace-accent);
+  box-shadow: 0 14px 32px rgb(24 45 80 / 8%);
+}
+/* Keep accordion hover fills inside their rounded card headers. */
+html.spark-ui body :is(.expandable-panel, .tag-select-dropdown) > summary,
+html.spark-ui body :is(.expandable-panel, .tag-select-dropdown) > summary:hover {
+  border-radius: inherit;
+  box-shadow: none;
+  transform: none;
+  background-clip: padding-box;
+}
+html.spark-ui body :is(.expandable-panel, .tag-select-dropdown)[open] > summary,
+html.spark-ui body :is(.expandable-panel, .tag-select-dropdown)[open] > summary:hover {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/* Knowledge and catalogue card actions and pagination remain readable. */
+html.spark-ui body .knowledge-edit-button {
+  align-self: flex-start;
+  width: auto;
+  min-width: 72px;
+  min-height: 44px;
+  padding: 10px 16px;
+  color: var(--spark-text);
+  background: var(--spark-surface-raised);
+  border: 1px solid var(--spark-border);
+}
+html.spark-ui body .knowledge-pagination {
+  color: var(--spark-muted);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+html.spark-ui[data-theme='dark'] body .knowledge-edit-button,
+html.spark-ui[data-theme='dark'] body .knowledge-pagination .secondary {
+  background: var(--spark-surface-raised);
+  color: var(--spark-text);
+  border-color: var(--spark-border);
+}
+html.spark-ui[data-theme='dark'] body .knowledge-pagination .secondary:disabled {
+  background: var(--spark-surface);
+  color: var(--spark-muted);
+  opacity: 1;
+  cursor: not-allowed;
+}

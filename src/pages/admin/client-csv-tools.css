@@ -1,0 +1,17 @@
+html.spark-ui body .panel.client-csv-tools { margin: 12px 0; padding: 14px 18px; }
+.client-csv-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+html.spark-ui body .client-csv-toolbar h3 { margin: 0 0 3px; font-size: 15px; line-height: 1.35; }
+html.spark-ui body .client-csv-toolbar p { margin: 0; font-size: 13px; color: var(--spark-muted, #61728d); }
+.client-csv-buttons { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+html.spark-ui body .client-csv-tools button { min-height: 36px; padding: 8px 13px; border: 1px solid var(--line, #dce5f2); border-radius: 9px; font-size: 13px; line-height: 18px; font-weight: 600; }
+html.spark-ui body .client-csv-tools button:not(.primary) { color: var(--ink, #18244d); background: var(--spark-surface, #fff); }
+html.spark-ui body .client-csv-tools button:not(.primary):hover:not(:disabled) { background: var(--spark-hover, #f2f6ff); }
+html.spark-ui body .client-csv-tools button.primary { color: #fff; background: #2563eb; border-color: #2563eb; }
+html.spark-ui body .client-csv-tools button.primary:hover:not(:disabled) { background: #1d4ed8; border-color: #1d4ed8; }
+html.spark-ui body .client-csv-tools .client-csv-feedback { margin: 8px 0 0; font-size: 13px; }
+.client-csv-tools .hint { margin: 8px 0; font-size: 13px; line-height: 1.5; }
+.client-csv-preview { margin-top: 14px; }
+.client-csv-table { max-height: 320px; overflow: auto; margin: 12px 0 16px; border-radius: 12px; }
+.client-csv-table table { width: 100%; }
+.client-csv-table td { overflow-wrap: anywhere; }
+@media (max-width: 600px) { html.spark-ui body .panel.client-csv-tools { padding: 12px; } .client-csv-buttons { width: 100%; } }

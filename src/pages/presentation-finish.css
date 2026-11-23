@@ -1,0 +1,169 @@
+/* Shared presentation only: record values, permissions and form behavior stay intact. */
+html.spark-ui body :is(.admin-shell, .portal-shell) table :is(th, td) {
+  word-break: normal;
+  overflow-wrap: normal;
+  vertical-align: top;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table th {
+  white-space: nowrap;
+  line-height: 1.5;
+  padding: 13px 16px;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table td {
+  padding: 16px;
+  line-height: 1.55;
+}
+html.spark-ui body :is(.table-wrap, .table-scroll) {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--spark-border, #dce5f2) transparent;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table :is(td small, .ticket-subject, .record-title) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+html.spark-ui body :is(.admin-shell, .portal-shell) table td small {
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* Compact metadata stays on one line; descriptions and titles can still wrap. */
+html.spark-ui body :is(.pill, .status-badge, .service-status) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 26px;
+  box-sizing: border-box;
+  max-width: none;
+  padding: 3px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+html.spark-ui body :is(.ticket-badge, .sla-pill, .badge, .technology-tag) {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+html.spark-ui body .pill:not([class*='priority-']):not([class*='change-status-']):not(.change-type) {
+  background: var(--spark-table-head, #f1f5fc);
+  color: var(--spark-muted, #5b77a1);
+}
+html.spark-ui body .pill.change-type {
+  background: var(--spark-primary-soft, #edf3ff);
+  color: var(--spark-link, #2563eb);
+}
+html.spark-ui body .pill:is(.priority-low, .change-status-approved, .change-status-completed, .change-status-closed) {
+  background: var(--spark-success-soft, #e9f7f0);
+  color: var(--spark-success-text, #18744c);
+}
+html.spark-ui body .pill:is(.priority-medium, .change-status-assessment, .change-status-awaiting_approval, .change-status-validation) {
+  background: var(--spark-warning-soft, #fff5df);
+  color: var(--spark-warning-text, #8d590c);
+}
+html.spark-ui body .pill:is(.priority-high, .priority-critical, .change-status-rejected, .change-status-failed) {
+  background: var(--spark-danger-soft, #fff0f2);
+  color: var(--spark-danger-text, #b42b49);
+}
+html.spark-ui body .pill:is(.change-status-submitted, .change-status-scheduled, .change-status-in_progress) {
+  background: var(--spark-primary-soft, #edf3ff);
+  color: var(--spark-link, #2563eb);
+}
+html.spark-ui body .pill:is(.change-status-draft, .change-status-cancelled, .change-status-rolled_back) {
+  background: var(--spark-table-head, #f1f5fc);
+  color: var(--spark-muted, #5b77a1);
+}
+
+/* The register may scroll inside its card instead of breaking words into letters. */
+html.spark-ui body .change-workspace-content .change-grid {
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+html.spark-ui body .change-workspace-content .change-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+html.spark-ui body .change-workspace-content .change-register-table {
+  width: 100%;
+  min-width: 980px;
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+html.spark-ui body .change-workspace-content .change-register-table :is(th, td):first-child {
+  width: 34%;
+  min-width: 260px;
+}
+html.spark-ui body .change-workspace-content .change-register-table :is(th, td):nth-child(2) {
+  min-width: 94px;
+}
+html.spark-ui body .change-workspace-content .change-register-table :is(th, td):nth-child(3) {
+  min-width: 94px;
+}
+html.spark-ui body .change-workspace-content .change-register-table :is(th, td):nth-child(4) {
+  min-width: 144px;
+}
+html.spark-ui body .change-workspace-content .change-register-table :is(th, td):nth-child(5) {
+  min-width: 150px;
+}
+html.spark-ui body .change-workspace-content .change-register-table :is(th, td):nth-child(6) {
+  min-width: 185px;
+}
+html.spark-ui body .change-workspace-content .change-register-table td:first-child strong {
+  white-space: nowrap;
+}
+html.spark-ui body .change-workspace-content .change-register-table td:first-child small {
+  max-width: 40ch;
+  line-height: 1.65;
+}
+html.spark-ui body .change-workspace-content .change-register-table th:first-child {
+  border-radius: 12px 0 0 12px;
+}
+html.spark-ui body .change-workspace-content .change-register-table th:last-child {
+  border-radius: 0 12px 12px 0;
+}
+html.spark-ui body :is(.panel, .editor) > .section-heading {
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+html.spark-ui body :is(.panel, .editor) > .section-heading > :is(h2, h3, p) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+html.spark-ui body .change-workspace-content .calendar-change {
+  padding: 14px 4px;
+  gap: 7px;
+}
+html.spark-ui body .change-workspace-content .calendar-change strong {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1800px) {
+  html.spark-ui body .change-workspace-content .change-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  html.spark-ui body :is(.admin-shell, .portal-shell) table :is(th, td) {
+    padding: 12px;
+  }
+  html.spark-ui body .change-workspace-content .change-grid {
+    gap: 16px;
+  }
+}

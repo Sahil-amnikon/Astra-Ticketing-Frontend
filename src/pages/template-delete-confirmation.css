@@ -1,0 +1,7 @@
+html.spark-ui body dialog.template-delete-confirmation { position: fixed; inset: 0; margin: auto; transform: none; width: min(460px,calc(100vw - 32px)); max-height: calc(100vh - 40px); overflow-y: auto; box-sizing: border-box; padding: 24px; border: 1px solid var(--line,#dce5f2); border-radius: 16px; background: var(--spark-surface,#fff); color: var(--spark-text,#18244a); box-shadow: 0 18px 70px #14224940; }
+.template-delete-confirmation::backdrop { background: #14224980; }
+.template-delete-confirmation h2 { margin: 0 0 12px; font-size: 21px; }
+.template-delete-confirmation p { margin: 0 0 22px; line-height: 1.65; font-size: 14px; overflow-wrap: anywhere; }
+.template-delete-confirmation-actions { display: flex; justify-content: flex-end; gap: 10px; }
+html.spark-ui .template-delete-confirm { border: 1px solid #ce3038; border-radius: 10px; background: #ce3038; color: white; padding: 10px 16px; font-weight: 600; }
+html.spark-ui .template-delete-confirm:hover { background: #b9232b; }

@@ -1,0 +1,199 @@
+/* Shared dropdown surfaces retain each source select's form and layout behavior. */
+html.spark-ui body .astra-select-menu {
+  position: fixed;
+  z-index: 10000;
+  box-sizing: border-box;
+  min-width: min(320px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: 320px;
+  margin: 0;
+  padding: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--spark-border, #dce5f2) transparent;
+  border: 1px solid var(--spark-border, #dce5f2);
+  border-radius: 12px;
+  background: var(--spark-surface, #f8faff);
+  color: var(--spark-text, #111b4b);
+  box-shadow: 0 10px 28px rgb(17 27 75 / 14%);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+html.spark-ui body .astra-select-menu .astra-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  height: auto;
+  margin: 0;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--spark-text, #111b4b);
+  box-shadow: none;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+  cursor: pointer;
+  transform: none;
+  transition: background-color 120ms ease, color 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.spark-ui body .astra-select-menu .astra-select-option:not(:disabled):hover,
+html.spark-ui body .astra-select-menu .astra-select-option.is-active:not(:disabled),
+html.spark-ui body .astra-select-menu .astra-select-option.is-selected:not(:disabled) {
+  background: var(--spark-hover, #edf3ff);
+  color: var(--spark-text, #111b4b);
+  box-shadow: none;
+  transform: none;
+}
+
+html.spark-ui body .astra-select-menu .astra-select-option:focus-visible {
+  outline: 2px solid var(--spark-link, #2563eb);
+  outline-offset: -2px;
+}
+
+html.spark-ui body .astra-select-menu .astra-select-option:disabled {
+  background: transparent;
+  color: var(--spark-muted, #5b77a1);
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+html.spark-ui body .astra-select-option-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+html.spark-ui body .astra-select-check {
+  flex: 0 0 16px;
+  color: var(--spark-link, #2563eb);
+  font-weight: 700;
+  text-align: center;
+}
+
+html.spark-ui body .astra-select-group {
+  margin: 4px 0 2px;
+  padding: 7px 10px 5px;
+  color: var(--spark-muted, #5b77a1);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+html.spark-ui body .astra-select-empty {
+  margin: 0;
+  padding: 12px 10px;
+  color: var(--spark-muted, #5b77a1);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+html.spark-ui body select[multiple] {
+  border-radius: 10px;
+  scrollbar-width: thin;
+}
+
+html.spark-ui body select[multiple] option {
+  margin: 2px 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+html.spark-ui body select[multiple] option:checked {
+  background: var(--spark-hover, #edf3ff);
+  color: var(--spark-text, #111b4b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.spark-ui body .astra-select-menu .astra-select-option {
+    transition: none;
+  }
+}
+
+/* Existing checkbox menus share the same surface without changing their layout. */
+html.spark-ui body :is(.report-owner-menu, .glance-picker-panel),
+html.spark-ui body .technology-tag-picker .tag-select-dropdown {
+  border-color: var(--spark-border, #dce5f2);
+  border-radius: 12px;
+  background: var(--spark-surface, #f8faff);
+  color: var(--spark-text, #111b4b);
+  background-clip: padding-box;
+}
+
+html.spark-ui body :is(.report-owner-menu, .glance-picker-panel) {
+  box-shadow: 0 10px 28px rgb(17 27 75 / 14%);
+  scrollbar-width: thin;
+  scrollbar-color: var(--spark-border, #dce5f2) transparent;
+}
+
+html.spark-ui body :is(.report-owner-options, .glance-options,
+  .tag-select-dropdown .technology-tag-options) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--spark-border, #dce5f2) transparent;
+}
+
+html.spark-ui body .report-owner-menu .report-owner-option,
+html.spark-ui body .glance-picker-panel .glance-options > label,
+html.spark-ui body .tag-select-dropdown .technology-tag-options > label {
+  border-color: var(--spark-border, #dce5f2);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--spark-text, #111b4b);
+  background-clip: padding-box;
+}
+
+html.spark-ui body .report-owner-menu .report-owner-option:not(:has(input:disabled)):hover,
+html.spark-ui body .glance-picker-panel .glance-options > label:not(:has(input:disabled)):hover,
+html.spark-ui body .tag-select-dropdown .technology-tag-options > label:not(:has(input:disabled)):hover,
+html.spark-ui body .report-owner-menu .report-owner-option:has(input:checked),
+html.spark-ui body .glance-picker-panel .glance-options > label:has(input:checked),
+html.spark-ui body .tag-select-dropdown .technology-tag-options > label:has(input:checked) {
+  background: var(--spark-hover, #edf3ff);
+  color: var(--spark-text, #111b4b);
+}
+
+html.spark-ui body .report-owner-menu .report-owner-option:focus-within,
+html.spark-ui body .glance-picker-panel .glance-options > label:focus-within,
+html.spark-ui body .tag-select-dropdown .technology-tag-options > label:focus-within {
+  outline: 2px solid var(--spark-link, #2563eb);
+  outline-offset: -2px;
+}
+
+html.spark-ui body .technology-tag-picker .tag-select-dropdown > summary {
+  background: var(--spark-surface, #f8faff);
+  color: var(--spark-text, #111b4b);
+  border-radius: inherit;
+}
+
+html.spark-ui body .technology-tag-picker .tag-select-dropdown[open] > summary {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+html.spark-ui body .report-owner-menu :is(.hint, small) {
+  color: var(--spark-muted, #5b77a1);
+}

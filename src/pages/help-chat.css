@@ -1,0 +1,11 @@
+.help-search-form { display: grid; gap: 10px; margin-bottom: 16px; }
+.help-search-form label { font-size: 13px; font-weight: 600; }
+.help-search-form input { width: 100%; min-height: 40px; box-sizing: border-box; }
+html.spark-ui body .help-search-button { border: 1px solid #2563eb; border-radius: 9px; padding: 9px 14px; color: #fff; background: #2563eb; font-weight: 600; cursor: pointer; }
+html.spark-ui body .help-search-button:disabled { opacity: .5; cursor: default; }
+.help-web-result { padding: 16px 0; border-top: 1px solid var(--line, #dce5f2); }
+.help-web-result > strong { display: block; margin-bottom: 5px; line-height: 1.5; }
+.help-web-result > small { display: block; margin: 5px 0; color: var(--muted, #61728d); }
+html.spark-ui body .help-open-result { color: var(--spark-link, #2563eb); font-weight: 700; text-decoration: none; display: inline-block; padding: 4px 0; }
+.help-open-result:hover { text-decoration: underline; }
+.help-web-result p { overflow-wrap: anywhere; }

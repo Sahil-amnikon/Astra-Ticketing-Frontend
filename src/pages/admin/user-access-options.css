@@ -1,0 +1,37 @@
+.editor .access-selection-section {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.editor .access-selection-section > button {
+  justify-self: start;
+}
+.editor .access-selection-section .label,
+.editor .access-selection-section .hint {
+  margin: 0;
+}
+.editor .access-selection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.editor .access-routing-options {
+  padding: 14px 16px;
+  border: 1px solid var(--line, #dce5f2);
+  border-radius: 12px;
+  min-width: 0;
+}
+.editor .access-routing-options > summary {
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 8px;
+}
+.editor .access-routing-options[open] > :not(summary) {
+  margin-top: 14px;
+}
+.editor .form-grid > label > small.hint {
+  display: block;
+  margin-top: 7px;
+  line-height: 1.5;
+}

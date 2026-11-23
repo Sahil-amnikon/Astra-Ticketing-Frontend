@@ -1,38 +1,15 @@
-name: Phase 2 verification
+name: Frontend build
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
-  verify:
+  build:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: pgvector/pgvector:0.8.2-pg16-bookworm
-        env:
-          POSTGRES_USER: ci
-          POSTGRES_PASSWORD: ci-only-password
-          POSTGRES_DB: amnikon
-        ports: ['5432:5432']
-        options: --health-cmd 'pg_isready -U ci -d amnikon' --health-interval 5s --health-retries 10
-      redis:
-        image: redis:7.4.9-bookworm
-        ports: ['6379:6379']
-        options: --health-cmd 'redis-cli ping' --health-interval 5s --health-retries 10
-    env:
-      DATABASE_URL: postgresql://amnikon_app:ci-app-only-password@127.0.0.1:5432/amnikon
-      MIGRATION_DATABASE_URL: postgresql://ci:ci-only-password@127.0.0.1:5432/amnikon
-      REDIS_URL: redis://127.0.0.1:6379
-      APP_BASE_URL: http://127.0.0.1:3000
-      API_INTERNAL_URL: http://127.0.0.1:3001
-      NEXT_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '24.19.0'
+          node-version: '24'
           cache: npm
-      - run: docker exec -i -e APP_DB_PASSWORD=ci-app-only-password ${{ job.services.postgres.id }} sh -s < infra/postgres/init.sh
       - run: npm ci
-      - run: ALLOW_ISOLATED_MIGRATION_TEST=true node scripts/check-v10-upgrade.cjs
-      - run: npm run db:migrate && npm run db:seed
-      - run: npx playwright install --with-deps chromium
-      - run: npm run verify
-      - run: docker build -f infra/Dockerfile.api -t amnikon-api:ci . && docker build -f infra/Dockerfile.web -t amnikon-web:ci .
+      - run: npm run build

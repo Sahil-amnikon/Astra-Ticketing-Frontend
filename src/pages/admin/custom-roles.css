@@ -1,0 +1,10 @@
+.custom-role-dialog { width: min(520px, calc(100vw - 32px)); max-height: calc(100vh - 48px); overflow-y: auto; box-sizing: border-box; padding: 26px; border: 1px solid var(--spark-border, #dce5f2); border-radius: 16px; background: var(--spark-surface, white); color: var(--spark-text, #142249); box-shadow: 0 20px 70px #14224933; }
+.custom-role-dialog::backdrop { background: #14224966; }
+html.spark-ui body dialog.custom-role-dialog { position: fixed; inset: 0; margin: auto; height: fit-content; }
+.page-heading .role-heading-action { align-self: flex-start; flex-shrink: 0; margin-left: auto; }
+.custom-role-dialog form { display: grid; gap: 16px; }
+.custom-role-dialog :is(h2,p) { margin: 0; }
+.custom-role-dialog label { display: grid; gap: 8px; font-weight: 600; }
+.custom-role-dialog :is(input,select) { box-sizing: border-box; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--spark-border, #dce5f2); border-radius: 9px; background: var(--spark-surface, #f7f9fe); color: inherit; font: inherit; }
+.custom-role-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.custom-role-selection { display: grid; gap: 8px; margin-top: 18px; }
